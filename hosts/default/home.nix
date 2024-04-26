@@ -1,0 +1,72 @@
+{ config, pkgs, outputs, ... }:
+
+{
+
+#  imports = { outputs.homeManagerModules.default }
+  
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home = {
+    stateVersion = "23.11"; # never change this!
+
+    username = "rthemans";
+    homeDirectory = "/home/rthemans";
+    packages = [
+    ];
+    
+    # dotfiles management
+    file = {
+    };
+    
+    sessionVariables = {
+    
+    };
+  };
+
+  # Let Home Manager install and manage itself.
+  programs = {
+    home-manager.enable = true;
+    emacs = {
+      enable = true;
+      package = pkgs.emacs;
+      extraConfig = ''
+      (setq standard-indent 2)
+      '';
+    };
+    zoxide.enable = true;
+    fzf.enable = true;
+  };
+
+  services = {
+    copyq.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+    
+    theme = {
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-Light";
+    };
+
+    cursorTheme = {
+      package = pkgs.whitesur-cursors;
+      name = "WhiteSur-cursors";
+    };
+
+    iconTheme.name = "WhiteSur";
+  };
+
+  # dconf settings
+  dconf.settings = {
+    "org/buddiesofbudgie/budgie-desktop-view" = {
+      show = false;
+    };
+    
+    "com/solus-project/budgie-wm" = {
+      button-style = "left";
+      button-layout = "close,minimize,maximize:appmenu";
+    };
+    
+  };
+}
