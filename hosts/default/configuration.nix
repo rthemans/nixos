@@ -178,6 +178,7 @@
     google-chrome
     tea
     openssl
+    tmux
   ];
 
   programs.steam.enable = true;
