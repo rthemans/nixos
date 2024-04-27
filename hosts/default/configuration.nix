@@ -179,6 +179,7 @@
     tea
     openssl
     tmux
+    unetbootin
   ];
 
   programs.steam.enable = true;
