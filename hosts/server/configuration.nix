@@ -112,7 +112,7 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   security.pki.certificateFiles = [
-    "/home/rthemans/certs"
+    /home/rthemans/certs/geotrust-rsa-ca.crt
   ];
   services.pipewire = {
     enable = true;
@@ -178,6 +178,7 @@
     google-chrome
     tea
     openssl
+    tmux
   ];
 
   programs.steam.enable = true;

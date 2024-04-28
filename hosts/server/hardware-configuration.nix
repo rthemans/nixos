@@ -26,10 +26,6 @@
       device = "/dev/disk/by-label/DataDrive";
       fsType = "ntfs";
     };
-    "/Games" = {
-      device = "/dev/sdb3";
-      fsType = "ext4";
-    };
     "/windows" = {
       device = "/dev/disk/by-uuid/F674F33F74F30163";
       fsType = "ntfs";

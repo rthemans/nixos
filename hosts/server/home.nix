@@ -56,4 +56,17 @@
 
     iconTheme.name = "WhiteSur";
   };
+
+  # dconf settings
+  dconf.settings = {
+    "org/buddiesofbudgie/budgie-desktop-view" = {
+      show = false;
+    };
+    
+    "com/solus-project/budgie-wm" = {
+      button-style = "left";
+      button-layout = "close,minimize,maximize:appmenu";
+    };
+    
+  };
 }
