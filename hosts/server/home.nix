@@ -9,8 +9,8 @@
   home = {
     stateVersion = "23.11"; # never change this!
 
-    username = "rthemans";
-    homeDirectory = "/home/rthemans";
+    username = "web";
+    homeDirectory = "/home/web";
     packages = [
     ];
     
@@ -35,10 +35,6 @@
     };
     zoxide.enable = true;
     fzf.enable = true;
-  };
-
-  services = {
-    copyq.enable = true;
   };
 
   gtk = {

@@ -11,29 +11,19 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  boot.loader.grub = {
-    enable = true;
-    
-    device = "/dev/sda";
-    extraEntries = ''
-      menuentry "Windows 10" {
-      chainloader (hd0,1)+1
-    }
-    '';
-
-    # useOSProber = true;
-    # extraEntriesBeforeNixOS = true;
-  };
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # init shell: alias then variables
   environment.interactiveShellInit = ''
-    alias rebuild-default='sudo nixos-rebuild switch --flake /home/rthemans/nixos#default --impure'
+    alias rebuild-server='sudo nixos-rebuild switch --flake ~/nixos#server'
     
     export EDITOR=emacs;
     eval "$(zoxide init --cmd cd bash)"
   '';
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-server"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -46,6 +36,9 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
+
+  # Disable lid switch
+  services.logind.lidSwitchExternalPower = "ignore";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -63,22 +56,10 @@
   };
 
   console.useXkbConfig = true;
-
-  services.jellyfin.enable = true;
-  services.jellyfin.openFirewall = true;
-  
-  systemd.services."jellyfin".serviceConfig = {
-    DeviceAllow = pkgs.lib.mkForce [ "char-drm rw" "char-nvidia-frontend rw" "char-nvidia-uvm rw" ];
-    PrivateDevices = pkgs.lib.mkForce true;
-    RestrictAddressFamilies = pkgs.lib.mkForce [ "AF_UNIX" "AF_NETLINK" "AF_INET" "AF_INET6" ];
-};
   
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
-
-    # Nvidia driver
-    videoDrivers = ["displayLink"];
     
     # Configure keymap in X11    
     xkb.layout = "fr";
@@ -88,7 +69,7 @@
       # Enable automatic login for the user.
       autoLogin = {
         enable = true;
-	user = "rthemans";
+	user = "web";
       };
       
       sddm = {
@@ -98,10 +79,6 @@
     };
     
     desktopManager.budgie.enable = true;
-
-    # setup monitors
-    # I don't think that's working though
-    xrandrHeads = ["DP-3-2" "DP-3-3"];
   };
 
   # Enable CUPS to print documents.
@@ -111,9 +88,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  security.pki.certificateFiles = [
-    /home/rthemans/certs/geotrust-rsa-ca.crt
-  ];
+  
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -123,13 +98,11 @@
   systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rthemans = {
+  users.users.web = {
     isNormalUser = true;
-    description = "rthemans";
+    description = "web";
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" ];
     packages = with pkgs; [
-      firefox
-    #  thunderbird
     ];
   };
 
@@ -137,59 +110,27 @@
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "rthemans" = import ./home.nix;
+      "web" = import ./home.nix;
     };
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # jellyfin config
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    hplipWithPlugin
-    abiword
-    teams-for-linux
-    godot_4
     docker
     docker-compose
     wget
     curl
     whitesur-gtk-theme
     git
-    jellyfin
-    jellyfin-web
-    jellyfin-ffmpeg
-    lutris
-    obsidian
-    keepassxc
-    gvfs
-    udisks
-    shutter
-    xboxdrv
-    wine
-    google-chrome
     tea
     openssl
-    tmux
   ];
 
   programs.steam.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
@@ -211,11 +152,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  # enable usb
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
-  services.devmon.enable = true;
 
   virtualisation.docker.enable = true;
 }
