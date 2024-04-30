@@ -9,8 +9,8 @@
   home = {
     stateVersion = "23.11"; # never change this!
 
-    username = "rthemans";
-    homeDirectory = "/home/rthemans";
+    username = "web";
+    homeDirectory = "/home/web";
     packages = [
     ];
     
@@ -37,10 +37,6 @@
     fzf.enable = true;
   };
 
-  services = {
-    copyq.enable = true;
-  };
-
   gtk = {
     enable = true;
     
@@ -55,5 +51,18 @@
     };
 
     iconTheme.name = "WhiteSur";
+  };
+
+  # dconf settings
+  dconf.settings = {
+    "org/buddiesofbudgie/budgie-desktop-view" = {
+      show = false;
+    };
+    
+    "com/solus-project/budgie-wm" = {
+      button-style = "left";
+      button-layout = "close,minimize,maximize:appmenu";
+    };
+    
   };
 }
