@@ -154,6 +154,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    wezterm
     hplipWithPlugin
     abiword
     teams-for-linux
@@ -179,6 +180,7 @@
     tea
     openssl
     tmux
+    unetbootin
   ];
 
   programs.steam.enable = true;
