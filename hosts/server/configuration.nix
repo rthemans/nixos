@@ -140,6 +140,9 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22
+    443
+    554
+    2020
     8123
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
