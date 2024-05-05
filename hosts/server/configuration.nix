@@ -128,6 +128,7 @@
     git
     tea
     openssl
+    wezterm
   ];
 
   # List services that you want to enable:
