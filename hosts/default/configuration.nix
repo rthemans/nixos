@@ -156,11 +156,9 @@
   environment.systemPackages = with pkgs; [
     quickemu
     quickgui
-    netcat-gnu
     wezterm
     hplipWithPlugin
     abiword
-    teams-for-linux
     godot_4
     docker
     docker-compose
@@ -171,18 +169,14 @@
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
-    lutris
     obsidian
     keepassxc
     gvfs
     udisks
     shutter
     xboxdrv
-    wine
-    google-chrome
     tea
     openssl
-    tmux
     unetbootin
   ];
 
