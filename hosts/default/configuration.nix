@@ -154,10 +154,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    spice
+    quickemu
+    quickgui
     wezterm
     hplipWithPlugin
     abiword
-    teams-for-linux
     godot_4
     docker
     docker-compose
@@ -168,22 +170,16 @@
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
-    lutris
     obsidian
     keepassxc
     gvfs
     udisks
     shutter
     xboxdrv
-    wine
-    google-chrome
     tea
     openssl
-    tmux
     unetbootin
   ];
-
-  programs.steam.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
