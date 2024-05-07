@@ -21,6 +21,10 @@
     }
     '';
 
+    extraConfig = ''
+      set timeout=-1;
+    '';
+
     # useOSProber = true;
     # extraEntriesBeforeNixOS = true;
   };
