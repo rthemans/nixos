@@ -13,6 +13,8 @@
 
   boot.loader.grub = {
     enable = true;
+    gfxmodeEfi = "1920x1080";
+    gfxmodeBios = "1920x1080";
     
     device = "/dev/sda";
     extraEntries = ''
