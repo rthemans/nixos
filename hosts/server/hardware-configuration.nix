@@ -34,15 +34,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
-  services.create_ap = {
-    enable = true;
-    settings = {
-      INTERNET_IFACE = "eth0";
-      WIFI_IFACE = "wlp2s0";
-      SSID = "VOO-7HF0JBH";
-      PASSPHRASE = "4XpYnHq9ZrA6L2z2GR";
-    };
-  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
