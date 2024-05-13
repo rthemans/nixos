@@ -129,6 +129,7 @@
     tea
     openssl
     wezterm
+    handbrake
   ];
 
   # List services that you want to enable:
