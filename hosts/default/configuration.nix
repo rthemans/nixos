@@ -13,6 +13,8 @@
 
   boot.loader.grub = {
     enable = true;
+    gfxmodeEfi = "1920x1080";
+    gfxmodeBios = "1920x1080";
     
     device = "/dev/sda";
     extraEntries = ''
@@ -20,6 +22,33 @@
       chainloader (hd0,1)+1
     }
     '';
+
+    extraConfig = ''
+      set timeout=-1;
+    '';
+
+    theme = pkgs.stdenv.mkDerivation {
+      pname = "sleek-grub-theme";
+      version = "unstable-2022-06-04";
+
+      src = pkgs.fetchFromGitHub ({
+        owner = "sandesh236";
+        repo = "sleek--themes";
+        rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
+        hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
+      });
+
+      installPhase = ''
+        runHook preInstall
+
+        mkdir -p $out/
+
+        cp -r 'Sleek theme-bigSur'/sleek/* $out/
+        sed -i "s/Grub Bootloader/Grub Loader/" $out/theme.txt
+
+        runHook postInstall
+      '';
+    };
 
     # useOSProber = true;
     # extraEntriesBeforeNixOS = true;
@@ -31,6 +60,8 @@
     
     export EDITOR=emacs;
     eval "$(zoxide init --cmd cd bash)"
+
+
   '';
 
   networking.hostName = "nixos"; # Define your hostname.
