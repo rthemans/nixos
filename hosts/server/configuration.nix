@@ -145,6 +145,7 @@
     554
     2020
     8123
+    8096
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
