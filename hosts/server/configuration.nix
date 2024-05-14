@@ -129,7 +129,7 @@
     tea
     openssl
     wezterm
-    handbrake
+    ffmpeg_5
   ];
 
   # List services that you want to enable:
