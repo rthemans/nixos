@@ -11,6 +11,32 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/a72a4bff-cb0c-4aa4-8255-04820071ef3c";
+      fsType = "ext4";
+    };
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = [ "noatime" ];
+    };
+    "/Galileo" = {
+      device = "/dev/disk/by-label/Galileo";
+      fsType = "ntfs";
+    };
+    "/DataDrive" =  {
+      device = "/dev/disk/by-label/DataDrive";
+      fsType = "ntfs";
+    };
+    "/windows" = {
+      device = "/dev/disk/by-uuid/F674F33F74F30163";
+      fsType = "ntfs";
+    };
+  };
+
+
   boot.loader.grub = {
     enable = true;
     gfxmodeEfi = "1920x1080";
@@ -68,6 +94,18 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.auto-optimise-store = true;
+
+  nix.optimise = {
+    automatic = true;
+    dates = [ "21:00" ];
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -185,6 +223,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    #jetbrains.idea-ultimate
+    #maven
+    #jdk11
     pdf-sign
     spice
     quickemu
