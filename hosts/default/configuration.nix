@@ -11,32 +11,6 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/a72a4bff-cb0c-4aa4-8255-04820071ef3c";
-      fsType = "ext4";
-    };
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-      neededForBoot = true;
-      options = [ "noatime" ];
-    };
-    "/Galileo" = {
-      device = "/dev/disk/by-label/Galileo";
-      fsType = "ntfs";
-    };
-    "/DataDrive" =  {
-      device = "/dev/disk/by-label/DataDrive";
-      fsType = "ntfs";
-    };
-    "/windows" = {
-      device = "/dev/disk/by-uuid/F674F33F74F30163";
-      fsType = "ntfs";
-    };
-  };
-
-
   boot.loader.grub = {
     enable = true;
     gfxmodeEfi = "1920x1080";
@@ -132,15 +106,6 @@
   };
 
   console.useXkbConfig = true;
-
-  services.jellyfin.enable = true;
-  services.jellyfin.openFirewall = true;
-  
-  systemd.services."jellyfin".serviceConfig = {
-    DeviceAllow = pkgs.lib.mkForce [ "char-drm rw" "char-nvidia-frontend rw" "char-nvidia-uvm rw" ];
-    PrivateDevices = pkgs.lib.mkForce true;
-    RestrictAddressFamilies = pkgs.lib.mkForce [ "AF_UNIX" "AF_NETLINK" "AF_INET" "AF_INET6" ];
-};
   
   services.xserver = {
     # Enable the X11 windowing system.
@@ -213,23 +178,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # jellyfin config
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #jetbrains.idea-ultimate
-    #maven
-    #jdk11
+    jetbrains.idea-ultimate
+    maven
+    jdk11
     pdf-sign
-    spice
-    quickemu
-    quickgui
     wezterm
     hplipWithPlugin
     abiword
@@ -240,9 +195,6 @@
     curl
     whitesur-gtk-theme
     git
-    jellyfin
-    jellyfin-web
-    jellyfin-ffmpeg
     obsidian
     keepassxc
     gvfs

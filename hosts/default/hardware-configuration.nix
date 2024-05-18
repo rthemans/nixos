@@ -13,6 +13,31 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/a72a4bff-cb0c-4aa4-8255-04820071ef3c";
+      fsType = "ext4";
+    };
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = [ "noatime" ];
+    };
+    "/Galileo" = {
+      device = "/dev/disk/by-label/Galileo";
+      fsType = "ntfs";
+    };
+    "/DataDrive" =  {
+      device = "/dev/disk/by-label/DataDrive";
+      fsType = "ntfs";
+    };
+    "/windows" = {
+      device = "/dev/disk/by-uuid/F674F33F74F30163";
+      fsType = "ntfs";
+    };
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
