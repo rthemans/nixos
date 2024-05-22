@@ -36,6 +36,7 @@ in
     ];
 
   stylix.image = ./wallpaper.jpg;
+  stylix.opacity.applications = 0.7;
 
   boot.loader.grub = {
     enable = true;
