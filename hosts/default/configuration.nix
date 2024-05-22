@@ -11,6 +11,8 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  stylix.image = ./wallpaper.jpg;
+
   boot.loader.grub = {
     enable = true;
     gfxmodeEfi = "1920x1080";
@@ -145,9 +147,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  security.pki.certificateFiles = [
-    /home/rthemans/certs/geotrust-rsa-ca.crt
-  ];
+  
   services.pipewire = {
     enable = true;
     alsa.enable = true;
