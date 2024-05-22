@@ -36,7 +36,12 @@ in
     ];
 
   stylix.image = ./wallpaper.jpg;
-  stylix.opacity.applications = 0.1;
+  stylix.opacity = {
+    applications = 0.7;
+    desktop = 0.7;
+    popups = 0.7;
+    terminal = 0.7;
+  };
 
   boot.loader.grub = {
     enable = true;
