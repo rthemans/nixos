@@ -190,6 +190,7 @@ in
     jdk11
     pdf-sign
     open-pdf-sign
+    eid-mw
     wezterm
     hplipWithPlugin
     abiword
