@@ -1,4 +1,4 @@
-{ config, pkgs, outputs, ... }:
+{ config, pkgs, outputs, lib, ... }:
 
 {
 
@@ -44,7 +44,7 @@
   gtk = {
     enable = true;
     
-    theme = {
+    theme = lib.mkForce {
       package = pkgs.whitesur-gtk-theme;
       name = "WhiteSur-Light";
     };
