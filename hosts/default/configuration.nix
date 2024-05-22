@@ -2,8 +2,32 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, outputs, ... }:
+{ config, pkgs, lib, inputs, outputs, ... }:
 
+let
+  grub-theme = pkgs.stdenv.mkDerivation {
+      pname = "sleek-grub-theme";
+      version = "unstable-2022-06-04";
+
+      src = pkgs.fetchFromGitHub ({
+        owner = "sandesh236";
+        repo = "sleek--themes";
+        rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
+        hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
+      });
+
+      installPhase = ''
+        runHook preInstall
+
+        mkdir -p $out/
+
+        cp -r 'Sleek theme-bigSur'/sleek/* $out/
+        sed -i "s/Grub Bootloader/Grub Loader/" $out/theme.txt
+
+        runHook postInstall
+      '';
+    };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -29,28 +53,7 @@
       set timeout=-1;
     '';
 
-    theme = pkgs.stdenv.mkDerivation {
-      pname = "sleek-grub-theme";
-      version = "unstable-2022-06-04";
-
-      src = pkgs.fetchFromGitHub ({
-        owner = "sandesh236";
-        repo = "sleek--themes";
-        rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
-        hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
-      });
-
-      installPhase = ''
-        runHook preInstall
-
-        mkdir -p $out/
-
-        cp -r 'Sleek theme-bigSur'/sleek/* $out/
-        sed -i "s/Grub Bootloader/Grub Loader/" $out/theme.txt
-
-        runHook postInstall
-      '';
-    };
+    theme = lib.mkForce grub-theme;
 
     # useOSProber = true;
     # extraEntriesBeforeNixOS = true;
@@ -108,6 +111,19 @@
   };
 
   console.useXkbConfig = true;
+
+  services.displayManager = {
+    # Enable automatic login for the user.
+    autoLogin = {
+      enable = true;
+      user = "rthemans";
+    };
+
+    sddm = {
+      enable = true;
+      autoNumlock = true;
+    };
+  };
   
   services.xserver = {
     # Enable the X11 windowing system.
@@ -119,19 +135,6 @@
     # Configure keymap in X11    
     xkb.layout = "fr";
     xkb.variant = "bepo";
-
-    displayManager = {
-      # Enable automatic login for the user.
-      autoLogin = {
-        enable = true;
-	user = "rthemans";
-      };
-      
-      sddm = {
-        enable = true;
-	autoNumlock = true;
-      };
-    };
     
     desktopManager.budgie.enable = true;
 
@@ -193,7 +196,6 @@
     docker-compose
     wget
     curl
-    whitesur-gtk-theme
     git
     obsidian
     keepassxc

@@ -34,7 +34,5 @@
           ];
         };
       };
-
-      resources = import ./resources;
     };
 }
