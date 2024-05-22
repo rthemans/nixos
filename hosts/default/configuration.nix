@@ -188,6 +188,7 @@ in
     maven
     jdk11
     pdf-sign
+    open-pdf-sign
     wezterm
     hplipWithPlugin
     abiword
