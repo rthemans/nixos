@@ -22,7 +22,7 @@ let
         mkdir -p $out/
 
         cp -r 'Sleek theme-bigSur'/sleek/* $out/
-        sed -i "s/Grub Bootloader/Grub Loader/" $out/theme.txt
+        sed -i "s/Grub Bootloader/Bonjour Raphaël/" $out/theme.txt
 
         runHook postInstall
       '';
