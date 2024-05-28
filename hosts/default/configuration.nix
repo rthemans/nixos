@@ -136,7 +136,7 @@ in
     enable = true;
 
     # Nvidia driver
-    videoDrivers = ["displayLink", "nvidia"];
+    videoDrivers = ["displayLink" "nvidia"];
     
     # Configure keymap in X11    
     xkb.layout = "fr";
