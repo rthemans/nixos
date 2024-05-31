@@ -22,7 +22,7 @@ let
         mkdir -p $out/
 
         cp -r 'Sleek theme-bigSur'/sleek/* $out/
-        sed -i "s/Grub Bootloader/Bonjour Raphaël/" $out/theme.txt
+        sed -i "s/Grub Bootloader/Bonjour Raphael/" $out/theme.txt
 
         runHook postInstall
       '';
@@ -97,6 +97,12 @@ in
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
+
+  # Enable steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
