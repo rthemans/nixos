@@ -35,6 +35,10 @@
     };
     zoxide.enable = true;
     fzf.enable = true;
+    fish = {
+      enable = true;
+      plugins = [];
+    };
   };
 
   services = {
