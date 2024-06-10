@@ -43,11 +43,12 @@
 
       initExtra = ''
         eval "$(oh-my-posh init zsh)"
+	eval "$(zoxide init --cmd cd zsh)"
       '';
     };
     git = {
       enable = true;
-      userName = "Raphaël Thémans";
+      userName = "rthemans";
       userEmail = "raph.the@gmail.com";
     };
   };
