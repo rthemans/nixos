@@ -35,9 +35,20 @@
     };
     zoxide.enable = true;
     fzf.enable = true;
-    fish = {
+    zsh = {
       enable = true;
-      plugins = [];
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      initExtra = ''
+        eval "$(oh-my-posh init zsh)"
+      '';
+    };
+    git = {
+      enable = true;
+      userName = "Raphaël Thémans";
+      userEmail = "raph.the@gmail.com";
     };
   };
 
@@ -58,7 +69,11 @@
       name = "WhiteSur-cursors";
     };
 
-    iconTheme.name = "WhiteSur";
+    iconTheme = {
+      name = "WhiteSur";
+      package = pkgs.whitesur-icon-theme;
+      
+    };
   };
 
   # dconf settings

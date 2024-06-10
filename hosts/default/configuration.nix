@@ -48,12 +48,7 @@ in
     gfxmodeEfi = "1920x1080";
     gfxmodeBios = "1920x1080";
     
-    device = "/dev/sda";
-    extraEntries = ''
-      menuentry "Windows 10" {
-      chainloader (hd0,1)+1
-    }
-    '';
+    device = "/dev/sdb";
 
     extraConfig = ''
       set timeout=-1;
@@ -196,6 +191,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    oh-my-posh
     pavucontrol
     unzip
     jetbrains.idea-ultimate
