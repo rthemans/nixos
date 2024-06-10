@@ -15,14 +15,8 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/a72a4bff-cb0c-4aa4-8255-04820071ef3c";
+      device = "/dev/disk/by-uuid/d547cc17-3c53-485c-b571-e511fff9c145";
       fsType = "ext4";
-    };
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-      neededForBoot = true;
-      options = [ "noatime" ];
     };
     "/Galileo" = {
       device = "/dev/disk/by-label/Galileo";
@@ -32,13 +26,9 @@
       device = "/dev/disk/by-label/DataDrive";
       fsType = "ntfs";
     };
-    "/windows" = {
-      device = "/dev/disk/by-uuid/F674F33F74F30163";
-      fsType = "ntfs";
-    };
   };
 
-  swapDevices = [ ];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
