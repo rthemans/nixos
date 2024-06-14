@@ -33,6 +33,10 @@
       (setq standard-indent 2)
       '';
     };
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     zoxide.enable = true;
     fzf.enable = true;
     zsh = {
