@@ -32,6 +32,9 @@
       extraConfig = ''
       (setq standard-indent 2)
       '';
+      extraPackages = "epkgs: [
+        epkgs.nix-mode
+      ]";
     };
     eza = {
       enable = true;
@@ -41,6 +44,7 @@
     fzf.enable = true;
     zsh = {
       enable = true;
+      prezto.editor.keymap = "emacs";
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
