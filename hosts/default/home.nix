@@ -65,7 +65,7 @@
 	ll = "log --oneline";
 	rv = "remote -v";
 	d = "diff";
-	gl = "config --global -l"
+	gl = "config --global -l";
       };
 
       extraConfig = {
