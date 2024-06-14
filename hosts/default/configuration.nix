@@ -52,16 +52,6 @@ in
     # extraEntriesBeforeNixOS = true;
   };
 
-  # init shell: alias then variables
-  environment.interactiveShellInit = ''
-    alias rebuild-default='sudo nixos-rebuild switch --flake /home/rthemans/nixos#default --impure'
-    
-    export EDITOR=emacs;
-    eval "$(zoxide init --cmd cd bash)"
-
-
-  '';
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
