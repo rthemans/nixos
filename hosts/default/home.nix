@@ -45,11 +45,20 @@
         eval "$(oh-my-posh init zsh)"
 	eval "$(zoxide init --cmd cd zsh)"
       '';
+
+      shellAliases = {
+        rebuild = "sudo nixos-rebuild switch --flake ~/nixos#default";
+      };
     };
     git = {
       enable = true;
       userName = "rthemans";
       userEmail = "raph.the@gmail.com";
+      extraConfig = {
+        safe = {
+	  directory = "*";
+	};
+      };
     };
   };
 

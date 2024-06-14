@@ -21,10 +21,16 @@
     "/Galileo" = {
       device = "/dev/disk/by-label/Galileo";
       fsType = "ntfs";
+      options = [
+        "users"
+      ];
     };
     "/DataDrive" =  {
       device = "/dev/disk/by-label/DataDrive";
       fsType = "ntfs";
+      options = [
+        "users"
+      ];
     };
   };
 
