@@ -29,7 +29,11 @@
       enable = true;
       enableZshIntegration = true;
       extraConfig = ''
+        local config = wezterm.config_builder()
+
         config.color_scheme = 'Atelier Cave Light (base16)'
+
+        return config        
       '';
     };
     home-manager.enable = true;
