@@ -58,12 +58,25 @@
       enable = true;
       userName = "rthemans";
       userEmail = "raph.the@gmail.com";
+
+      aliases = {
+        cm = "commit -a -m";
+	st = "status -sb";
+	ll = "log --oneline";
+	rv = "remote -v";
+	d = "diff";
+	gl = "config --global -l"
+      };
+
       extraConfig = {
         safe = {
 	  directory = "*";
 	};
 	pull = {
 	  rebase = true;
+	};
+	core = {
+	  editor = "emacs";
 	};
       };
     };
