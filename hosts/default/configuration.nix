@@ -35,14 +35,6 @@ in
       inputs.home-manager.nixosModules.default
     ];
 
-  stylix.image = ./resources/wallpaper.jpg;
-  stylix.opacity = {
-    applications = 0.7;
-    desktop = 0.7;
-    popups = 0.7;
-    terminal = 0.7;
-  };
-
   boot.loader.grub = {
     enable = true;
     gfxmodeEfi = "1920x1080";
