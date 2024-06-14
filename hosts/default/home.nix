@@ -30,8 +30,6 @@
       enableZshIntegration = true;
       extraConfig = ''
         config.color_scheme = 'Atelier Cave Light (base16)'
-
-        return config
       '';
     };
     home-manager.enable = true;
