@@ -166,6 +166,9 @@ in
   };
   systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 
+  # enable zsh at system level
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rthemans = {
     isNormalUser = true;
@@ -175,6 +178,7 @@ in
       firefox
     #  thunderbird
     ];
+    shell = pkgs.zsh;
   };
 
   home-manager = {
