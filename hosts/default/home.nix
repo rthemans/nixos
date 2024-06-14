@@ -32,7 +32,10 @@
       extraConfig = ''
       (setq standard-indent 2)
       '';
-      extraPackages = epkgs: [ epkgs.nix-mode ];
+      extraPackages = epkgs: [
+        epkgs.nix-mode
+        epkgs.json-mode
+      ];
     };
     eza = {
       enable = true;
