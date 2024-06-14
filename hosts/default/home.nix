@@ -69,15 +69,19 @@
       };
 
       extraConfig = {
-        safe = {
-	  directory = "*";
+	core = {
+	  editor = "emacs";
+	};
+	help = {
+	  autocorrect = "prompt";
 	};
 	pull = {
 	  rebase = true;
 	};
-	core = {
-	  editor = "emacs";
+        safe = {
+	  directory = "*";
 	};
+	
       };
     };
   };
