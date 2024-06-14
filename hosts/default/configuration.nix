@@ -35,7 +35,7 @@ in
       inputs.home-manager.nixosModules.default
     ];
 
-  stylix.image = ./wallpaper.jpg;
+  stylix.image = ./resources/wallpaper.jpg;
   stylix.opacity = {
     applications = 0.7;
     desktop = 0.7;
