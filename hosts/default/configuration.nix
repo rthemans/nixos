@@ -186,7 +186,6 @@ in
     pdf-sign
     open-pdf-sign
     eid-mw
-    wezterm
     hplipWithPlugin
     abiword
     godot_4

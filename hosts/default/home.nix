@@ -25,6 +25,13 @@
 
   # Let Home Manager install and manage itself.
   programs = {
+    wezterm = {
+      enable = true;
+      enableZshIntegration = true;
+      extraConfig = ''
+        config.color_scheme = 'Atelier Cave Light (base16)'
+      '';
+    };
     home-manager.enable = true;
     emacs = {
       enable = true;
