@@ -58,6 +58,9 @@
         safe = {
 	  directory = "*";
 	};
+	pull = {
+	  rebase = true;
+	};
       };
     };
   };
