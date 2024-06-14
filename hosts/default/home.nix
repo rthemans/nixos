@@ -32,9 +32,7 @@
       extraConfig = ''
       (setq standard-indent 2)
       '';
-      extraPackages = "epkgs: [
-        epkgs.nix-mode
-      ]";
+      extraPackages = epkgs: [ epkgs.nix-mode ];
     };
     eza = {
       enable = true;
