@@ -53,7 +53,7 @@
       '';
 
       shellAliases = {
-        rb = "sudo nixos-rebuild switch --flake ~/nixos#default";
+        rebuild = "sudo nixos-rebuild switch --flake ~/nixos#default";
       };
     };
     git = {
