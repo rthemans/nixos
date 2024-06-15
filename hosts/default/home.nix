@@ -16,6 +16,7 @@
     
     # dotfiles management
     file = {
+      ".config/omp/config.omp.json".source = ./resources/diamond.omp.json;
     };
     
     sessionVariables = {
@@ -62,7 +63,7 @@
       syntaxHighlighting.enable = true;
 
       initExtra = ''
-        eval "$(oh-my-posh init zsh)"
+        eval "$(oh-my-posh init zsh --config ~/.config/omp/config.omp.json)"
 	eval "$(zoxide init --cmd cd zsh)"
       '';
 
