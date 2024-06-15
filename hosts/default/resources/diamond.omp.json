@@ -5,9 +5,9 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#FFBD00",
+            "foreground": "#473c37",
           "style": "plain",
-          "template": "{{ .UserName }}'s ",
+          "template": "{{ .UserName }}",
           "type": "session"
         },
         {
@@ -16,11 +16,11 @@
             "style": "folder"
           },
           "style": "plain",
-          "template": "{{ .Path }}/ ",
+          "template": " in {{ .Path }}/ ",
           "type": "path"
         },
         {
-          "foreground": "#F62F2E",
+          "foreground": "#AF4F14",
           "properties": {
             "fetch_status": true
           },
@@ -68,11 +68,11 @@
       "alignment": "left",
       "newline": true,
       "segments": [
-        {
-          "foreground": "#FFBD00",
-          "style": "plain",
-          "template": "\u2b9e ",
-          "type": "text"
+          {
+	      "foreground": "#0c7bbb",
+	      "style": "plain",
+	      "template": "\u2570\u2500",
+	      "type": "text"
         }
       ],
       "type": "prompt"
