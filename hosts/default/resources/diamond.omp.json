@@ -3,6 +3,7 @@
   "blocks": [
     {
       "alignment": "left",
+      "newline" : true,
       "segments": [
 	{
 	  "foreground": "#473c37",
@@ -53,6 +54,7 @@
 	{
 	  "foreground": "#ffffff",
 	  "leading_diamond": "\u250b",
+	  "trailing_diamond": " ",
 	  "properties": {
 	    "style": "roundrock",
 	    "threshold": 0
@@ -60,7 +62,13 @@
 	  "style": "diamond",
 	  "template": " {{ .FormattedMs }} ",
 	  "type": "executiontime"
-	}
+	},
+        {
+          "type": "time",
+          "style": "diamond",
+	  "leading_diamond": "\u250b ",
+          "template": "{{ .CurrentDate | date \"15:04:05\" }}"
+        }
       ],
       "type": "prompt"
     },
@@ -79,7 +87,7 @@
     }
   ],
   "transient_prompt": {
-    "template": ">"
+    "template": "> "
   },
   "final_space": true,
   "version": 2
