@@ -43,6 +43,7 @@
       package = pkgs.emacs;
       extraConfig = ''
       (setq standard-indent 2)
+      (setq js-indent-level 2)
       '';
       extraPackages = epkgs: [
         epkgs.nix-mode
