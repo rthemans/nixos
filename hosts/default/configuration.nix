@@ -42,10 +42,6 @@ in
     
     device = "/dev/sdb";
 
-    extraConfig = ''
-      set timeout=-1;
-    '';
-
     theme = lib.mkForce grub-theme;
 
     # useOSProber = true;
@@ -71,6 +67,20 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # fonts
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      jetbrains-mono
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "JetBrains Mono Medium" ];
+      };
+    };
+  };
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
@@ -180,7 +190,7 @@ in
     oh-my-posh
     pavucontrol
     unzip
-    jetbrains.idea-ultimate
+    jetbrains-toolbox
     maven
     jdk11
     pdf-sign
