@@ -72,10 +72,12 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      ccsymbols
-      zpix-pixel-font
       xorg.xfontsel
       jetbrains-mono
+      noto-fonts-cjk-serif
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      noto-fonts
     ];
 
     fontconfig = {
