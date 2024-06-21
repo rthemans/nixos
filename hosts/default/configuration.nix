@@ -187,6 +187,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    wpsoffice
     oh-my-posh
     pavucontrol
     unzip
@@ -197,7 +198,6 @@ in
     open-pdf-sign
     eid-mw
     hplipWithPlugin
-    abiword
     godot_4
     docker
     docker-compose
