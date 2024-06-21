@@ -72,12 +72,9 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      xorg.xfontsel
+      corefonts
+      vistafonts
       jetbrains-mono
-      noto-fonts-cjk-serif
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      noto-fonts
     ];
 
     fontconfig = {
