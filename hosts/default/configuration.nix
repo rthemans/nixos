@@ -72,6 +72,9 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      ccsymbols
+      zpix-pixel-font
+      xorg.xfontsel
       jetbrains-mono
     ];
 
