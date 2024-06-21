@@ -72,7 +72,6 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      corefonts
       vistafonts
       jetbrains-mono
     ];
