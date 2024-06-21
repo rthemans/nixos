@@ -192,6 +192,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    masterpdfeditor
     wpsoffice
     oh-my-posh
     pavucontrol
