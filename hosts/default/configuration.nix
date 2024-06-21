@@ -72,6 +72,7 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      roboto
       vistafonts
       jetbrains-mono
     ];
