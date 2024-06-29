@@ -189,31 +189,41 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    masterpdfeditor
-    wpsoffice
-    oh-my-posh
-    pavucontrol
-    unzip
+    # Dev
+    nodejs
     jetbrains-toolbox
     maven
     jdk11
+    godot_4
+    docker
+    docker-compose
+    git
+    tea
+
+    # Utility
+    masterpdfeditor
+    wpsoffice
+    pavucontrol
+    unzip
     pdf-sign
     open-pdf-sign
     eid-mw
     hplipWithPlugin
-    godot_4
-    docker
-    docker-compose
-    wget
-    curl
-    git
+
+    # Productivity
     obsidian
     keepassxc
+
+    # Terminal
+    oh-my-posh
+
+    # Other
+    wget
+    curl
     gvfs
     udisks
     shutter
     xboxdrv
-    tea
     openssl
     unetbootin
   ];
