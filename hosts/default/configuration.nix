@@ -210,6 +210,9 @@ in
     eid-mw
     hplipWithPlugin
 
+    # Chat
+    discord
+
     # Productivity
     obsidian
     keepassxc
