@@ -218,7 +218,8 @@ in
     keepassxc
 
     # Games
-    minecraft
+    # minecraft launcher
+    prismlauncher
 
     # Terminal
     oh-my-posh
