@@ -217,6 +217,9 @@ in
     obsidian
     keepassxc
 
+    # Games
+    minecraft
+
     # Terminal
     oh-my-posh
 
