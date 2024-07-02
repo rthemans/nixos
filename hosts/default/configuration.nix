@@ -194,6 +194,7 @@ in
     jetbrains-toolbox
     maven
     jdk11
+    jdk8
     godot_4
     docker
     docker-compose
