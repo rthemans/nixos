@@ -219,13 +219,14 @@ in
     keepassxc
 
     # Games
-    # minecraft launcher
+    ## minecraft launcher
     prismlauncher
 
     # Terminal
     oh-my-posh
 
     # Other
+    obs-studio
     wget
     curl
     gvfs
