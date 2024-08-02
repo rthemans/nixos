@@ -199,6 +199,7 @@ in
     docker-compose
     git
     tea
+    tmux
 
     # Utility
     masterpdfeditor
