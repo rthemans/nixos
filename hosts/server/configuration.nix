@@ -64,28 +64,27 @@
     # Configure keymap in X11    
     xkb.layout = "fr";
     xkb.variant = "bepo";
-
-    displayManager = {
-      # Enable automatic login for the user.
-      autoLogin = {
-        enable = true;
-	user = "web";
-      };
-      
-      sddm = {
-        enable = true;
-	autoNumlock = true;
-      };
-    };
     
     desktopManager.budgie.enable = true;
+  };
+
+  services.displayManager = {
+    # Enable automatic login for the user.
+    autoLogin = {
+      enable = true;
+      user = "web";
+    };
+
+    sddm = {
+      enable = true;
+      autoNumlock = true;
+    };
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   
@@ -129,7 +128,7 @@
     tea
     openssl
     wezterm
-    ffmpeg_5
+    ffmpeg_7
   ];
 
   # List services that you want to enable:
