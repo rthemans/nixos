@@ -200,6 +200,7 @@ in
     git
     tea
     tmux
+    python3
 
     # Utility
     masterpdfeditor
