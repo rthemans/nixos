@@ -26,6 +26,10 @@
 
   # Let Home Manager install and manage itself.
   programs = {
+    tmux = {
+      enable = true;
+      prefix = "F1";
+    };
     wezterm = {
       enable = true;
       enableZshIntegration = true;

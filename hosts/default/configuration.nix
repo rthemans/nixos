@@ -202,7 +202,6 @@ in
     docker-compose
     git
     tea
-    tmux
     python3
 
     # Utility
