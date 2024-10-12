@@ -187,6 +187,7 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.cudaSupport = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -202,7 +203,6 @@ in
     docker-compose
     git
     tea
-    python3
 
     # Utility
     masterpdfeditor
@@ -239,9 +239,13 @@ in
     openssl
     unetbootin
 
-    # GPU/cuda
+    # Machine Learning
     cachix
-    cudaPackages.cudatoolkit
+    cudaPackages_12.cudatoolkit
+    python311
+    python311Packages.pytorch-bin
+    python311Packages.pip
+    python311Packages.torchWithCuda
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
