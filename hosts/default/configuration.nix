@@ -55,6 +55,8 @@ in
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
     trusted-users = [ "root" "rthemans" ];
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
   nix.optimise = {
@@ -128,7 +130,7 @@ in
       autoNumlock = true;
     };
   };
-  
+
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
@@ -241,11 +243,6 @@ in
 
     # Machine Learning
     cachix
-    cudaPackages_12.cudatoolkit
-    python311
-    python311Packages.pytorch-bin
-    python311Packages.pip
-    python311Packages.torchWithCuda
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

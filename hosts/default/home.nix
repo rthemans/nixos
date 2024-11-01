@@ -24,6 +24,19 @@
     };
   };
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    settings = {
+      "$mod" = "SUPER";
+
+      input = {
+        kb_layout = "fr";
+        kb_variant = "bepo";
+      };
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs = {
     tmux = {
