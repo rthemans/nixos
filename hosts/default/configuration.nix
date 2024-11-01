@@ -128,8 +128,11 @@ in
     sddm = {
       enable = true;
       autoNumlock = true;
+      # wayland.enable = true;
     };
   };
+
+  # programs.hyprland.enable = true;
 
   services.xserver = {
     # Enable the X11 windowing system.
