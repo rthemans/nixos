@@ -20,12 +20,12 @@
     };
     
     sessionVariables = {
-    
+      
     };
   };
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    # enable = true;
 
     settings = {
       "$mod" = "SUPER";
@@ -82,8 +82,12 @@
 
       initExtra = ''
         eval "$(oh-my-posh init zsh --config ~/.config/omp/config.omp.json)"
-	eval "$(zoxide init --cmd cd zsh)"
+        eval "$(zoxide init --cmd cd zsh)"
       '';
+
+      sessionVariables = {
+        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/DataDrive/proton/compatibilitytools.d";
+      };
 
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos#default";
@@ -96,27 +100,23 @@
 
       aliases = {
         cm = "commit -a -m";
-	st = "status -sb";
-	ll = "log --oneline";
-	rv = "remote -v";
-	d = "diff";
-	gl = "config --global -l";
+	      st = "status -sb";
+	      ll = "log --oneline";
+	      rv = "remote -v";
+	      d = "diff";
+	      gl = "config --global -l";
       };
 
       extraConfig = {
-	core = {
-	  editor = "emacs";
-	};
-	help = {
-	  autocorrect = "prompt";
-	};
-	pull = {
-	  rebase = true;
-	};
-        safe = {
-	  directory = "*";
-	};
-	
+	      core = {
+	        editor = "emacs";
+	      };
+	      help = {
+	        autocorrect = "prompt";
+	      };
+	      pull = {
+	        rebase = true;
+	      };
       };
     };
   };

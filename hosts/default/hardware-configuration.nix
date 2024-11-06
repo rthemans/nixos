@@ -22,14 +22,14 @@
       device = "/dev/disk/by-label/Galileo";
       fsType = "ntfs";
       options = [
-        "users"
+        "defaults" "nofail" "uid=rthemans" "gid=users"
       ];
     };
     "/DataDrive" =  {
       device = "/dev/disk/by-label/DataDrive";
       fsType = "ntfs";
       options = [
-        "users"
+        "defaults" "nofail" "uid=rthemans" "gid=users"
       ];
     };
   };
@@ -47,6 +47,16 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
 
   hardware.opengl = {
     enable = true;
@@ -84,6 +94,10 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  # xbox controller
+  #hardware.xone.enable = true;
+  hardware.xpadneo.enable = true;
 
   # scanner
   hardware.sane.enable = true;

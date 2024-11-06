@@ -167,6 +167,9 @@ in
   };
   systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 
+  # bluetooth cli
+  services.blueman.enable = true;
+
   # enable zsh at system level
   programs.zsh.enable = true;
 
@@ -218,6 +221,7 @@ in
     open-pdf-sign
     eid-mw
     hplipWithPlugin
+    lshw
 
     # Chat
     discord
@@ -227,6 +231,10 @@ in
     keepassxc
 
     # Games
+    ## Global
+    steam-run
+    protonup
+    
     ## minecraft launcher
     prismlauncher
 
