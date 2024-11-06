@@ -234,6 +234,7 @@ in
     ## Global
     steam-run
     protonup
+    protontricks
     
     ## minecraft launcher
     prismlauncher
