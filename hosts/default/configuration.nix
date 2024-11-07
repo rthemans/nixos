@@ -146,10 +146,6 @@ in
     xkb.variant = "bepo";
     
     desktopManager.budgie.enable = true;
-
-    # setup monitors
-    # I don't think that's working though
-    xrandrHeads = ["DP-3-2" "DP-3-3"];
   };
 
   # Enable CUPS to print documents.
@@ -221,7 +217,6 @@ in
     open-pdf-sign
     eid-mw
     hplipWithPlugin
-    kanata
 
     # Chat
     discord
@@ -290,6 +285,13 @@ in
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.devmon.enable = true;
+
+  services.kanata = {
+    enable = true;
+    keyboard.default = {
+      configFile = ./resources/kanata.kbd;
+    };
+  };
 
   virtualisation.docker.enable = true;
 }
