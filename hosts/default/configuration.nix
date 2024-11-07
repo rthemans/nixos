@@ -173,7 +173,7 @@ in
   users.users.rthemans = {
     isNormalUser = true;
     description = "rthemans";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
     packages = with pkgs; [
       firefox
     #  thunderbird
