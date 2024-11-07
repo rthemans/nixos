@@ -60,7 +60,7 @@
       extraConfig = ''
       (setq standard-indent 2)
       (setq js-indent-level 2)
-      (setq display-line-numbers 'relative)
+      (setq display-line-numbers-type 'relative)
 
       (load-theme 'solarized-light t)
       (use-package fzf
