@@ -1,0 +1,15 @@
+(defcfg
+    process-unmapped-keys yes
+    )
+
+(defsrc
+  a 
+  )
+
+(defalias
+    a-mod (tap-hold 200 200 a lmet)
+    )
+
+(deflayer base
+    @a-mod
+    )
