@@ -17,6 +17,8 @@
     # dotfiles management
     file = {
       ".config/omp/config.omp.json".source = ./resources/diamond.omp.json;
+      ".config/emacs/init.el".source = ./resources/emacs/init.el;
+      ".emacs".source = ./resources/emacs/.emacs;
     };
     
     sessionVariables = {
