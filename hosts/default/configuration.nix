@@ -221,7 +221,7 @@ in
     open-pdf-sign
     eid-mw
     hplipWithPlugin
-    lshw
+    kanata
 
     # Chat
     discord
