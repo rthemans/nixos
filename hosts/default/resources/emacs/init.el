@@ -8,7 +8,6 @@
 (solarized-theme :repo "bbatsov/solarized-emacs" :fetcher github)
 
 ;; configuration
-
 (load-theme 'solarized-light t)
 
 (use-package fzf
