@@ -288,7 +288,7 @@ in
 
   services.kanata = {
     enable = true;
-    keyboard.default = {
+    keyboards.default = {
       configFile = ./resources/kanata.kbd;
     };
   };
