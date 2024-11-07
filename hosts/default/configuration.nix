@@ -209,6 +209,8 @@ in
     tea
 
     # Utility
+    nmon
+    nvtopPackages.nvidia
     masterpdfeditor
     wpsoffice
     pavucontrol
