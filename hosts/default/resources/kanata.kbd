@@ -3,7 +3,10 @@
     )
 
 (defsrc
-  a s d f j k l ;
+  F11
+  caps
+  a s d f
+  j k l ;
   )
 
 (defvar
@@ -12,6 +15,7 @@
     )
 
 (defalias
+    caps-mod (tap-hold 100 100 esc lctl)
     a-mod (tap-hold $tap-time $hold-time a lmet)
     s-mod (tap-hold $tap-time $hold-time s lalt)
     d-mod (tap-hold $tap-time $hold-time d lsft)
@@ -20,9 +24,20 @@
     k-mod (tap-hold $tap-time $hold-time k rsft)
     l-mod (tap-hold $tap-time $hold-time l ralt)
     ;-mod (tap-hold $tap-time $hold-time ; rmet)
+    empty-swt (layer-switch empty)
+    base-swt (layer-switch base)
     )
 
 (deflayer base
-    @a-mod @s-mod @d-mod @f-mod
-    @j-mod @k-mod @l-mod @;-mod
+    @empty-swt
+  @caps-mod
+  @a-mod @s-mod @d-mod @f-mod
+  @j-mod @k-mod @l-mod @;-mod
+    )
+
+(deflayer empty
+    @base-swt
+  _
+  _ _ _ _
+  _ _ _ _
     )
