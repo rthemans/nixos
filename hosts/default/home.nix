@@ -16,9 +16,7 @@
     
     # dotfiles management
     file = {
-      ".config/omp/config.omp.json".source = ./resources/diamond.omp.json;
-      ".config/emacs/init.el".source = ./resources/emacs/init.el;
-      ".emacs".source = ./resources/emacs/.emacs;
+      
     };
     
     sessionVariables = {
@@ -47,7 +45,6 @@
     };
     wezterm = {
       enable = true;
-      enableZshIntegration = true;
       extraConfig = ''
         local config = wezterm.config_builder()
 
@@ -72,6 +69,8 @@
     eza = {
       enable = true;
       enableZshIntegration = true;
+      icons = true;
+      git = true;
     };
     zoxide.enable = true;
     fzf.enable = true;
@@ -83,7 +82,6 @@
       syntaxHighlighting.enable = true;
 
       initExtra = ''
-        eval "$(oh-my-posh init zsh --config ~/.config/omp/config.omp.json)"
         eval "$(zoxide init --cmd cd zsh)"
       '';
 
@@ -120,6 +118,11 @@
 	        rebase = true;
 	      };
       };
+    };
+    oh-my-posh = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "./resources/diamond.omp.json"));
     };
   };
 
