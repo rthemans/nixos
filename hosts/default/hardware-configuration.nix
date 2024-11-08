@@ -32,6 +32,14 @@
         "defaults" "nofail" "uid=rthemans" "gid=users"
       ];
     };
+    "/mount/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = [
+        "defaults" "nofail" "noatime"
+      ];      
+    };
   };
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
