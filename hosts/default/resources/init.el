@@ -1,8 +1,7 @@
 (require 'package)
 (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-prior\
-ities`
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
@@ -36,8 +35,7 @@ ities`
   ;; (obsidian-daily-notes-directory "Daily Notes")
   ;; Directory of note templates, unset (nil) by default
   ;(obsidian-templates-directory "Templates")
-  ;; Daily Note template name - requires a template directory. Default: Daily Note Template.m\
-d
+  ;; Daily Note template name - requires a template directory. Default: Daily Note Template.md
   ;(obsidian-daily-note-template "Daily Note Template.md")
   :bind (:map obsidian-mode-map
   ;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
