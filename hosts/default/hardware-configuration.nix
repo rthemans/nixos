@@ -32,7 +32,7 @@
         "defaults" "nofail" "uid=rthemans" "gid=users"
       ];
     };
-    "/mount/nix" = {
+    "/nix" = {
       device = "/dev/disk/by-label/nix";
       fsType = "ext4";
       neededForBoot = true;
