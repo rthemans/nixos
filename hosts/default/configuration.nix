@@ -207,6 +207,7 @@ in
     docker-compose
     git
     tea
+    httpie
 
     # Utility
     nmon
