@@ -208,6 +208,7 @@ in
     git
     tea
     httpie
+    httpie-desktop
 
     # Utility
     nmon
