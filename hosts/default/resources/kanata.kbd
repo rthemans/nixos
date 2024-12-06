@@ -7,6 +7,7 @@
   caps
   a s d f
   j k l ;
+  rshift rctrl rmeta
   )
 
 (defvar
@@ -26,6 +27,7 @@
     ;-mod (tap-hold $tap-time $hold-time ; rmet)
     empty-swt (layer-switch empty)
     base-swt (layer-switch base)
+    sc-swt (layer-switch sc)
     )
 
 (deflayer base
@@ -33,11 +35,21 @@
   @caps-mod
   @a-mod @s-mod @d-mod @f-mod
   @j-mod @k-mod @l-mod @;-mod
+  _ _ _
     )
 
 (deflayer empty
+    @sc-swt
+  _
+  _ _ _ _
+  _ _ _ _
+  _ _ _
+    )
+
+(deflayer sc
     @base-swt
   _
   _ _ _ _
   _ _ _ _
+  rctrl ralt rshift
     )
