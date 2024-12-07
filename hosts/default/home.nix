@@ -110,6 +110,10 @@
 
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos#default";
+        switch-bepo = "setxkbmap fr -variant bepo";
+        sb = "switch-bepo";
+        switch-qwerty = "setxkbmap us";
+        sq = "switch-querty";
       };
     };
     git = {
