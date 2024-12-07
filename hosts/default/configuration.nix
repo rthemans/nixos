@@ -144,6 +144,7 @@ in
     # Configure keymap in X11    
     xkb.layout = "fr";
     xkb.variant = "bepo";
+    exportConfiguration = true;
     
     desktopManager.budgie.enable = true;
   };
