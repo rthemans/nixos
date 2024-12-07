@@ -222,6 +222,7 @@ in
     open-pdf-sign
     eid-mw
     hplipWithPlugin
+    xdotool
 
     # Chat
     discord
