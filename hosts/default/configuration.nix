@@ -212,6 +212,7 @@ in
     httpie-desktop
 
     # Utility
+    piper
     nmon
     nvtopPackages.nvidia
     masterpdfeditor
