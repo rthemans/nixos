@@ -213,6 +213,7 @@ in
 
     # Utility
     piper
+    libratbag
     nmon
     nvtopPackages.nvidia
     masterpdfeditor
