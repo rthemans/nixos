@@ -43,15 +43,11 @@
       enable = true;
       prefix = "F1";
     };
-    wezterm = {
+    alacritty = {
       enable = true;
-      extraConfig = ''
-        local config = wezterm.config_builder()
-
-        config.color_scheme = 'Atelier Cave Light (base16)'
-
-        return config        
-      '';
+    };
+    kitty = {
+      enable = true;
     };
     home-manager.enable = true;
     emacs = {
