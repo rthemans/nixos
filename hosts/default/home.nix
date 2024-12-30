@@ -48,6 +48,8 @@
     };
     kitty = {
       enable = true;
+      enableZshIntegration = true;
+      themeFile = "Arthur";
     };
     home-manager.enable = true;
     emacs = {
