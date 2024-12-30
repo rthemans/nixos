@@ -48,7 +48,7 @@
     };
     kitty = {
       enable = true;
-      enableZshIntegration = true;
+      shellIntegration.enableZshIntegration = true;
       themeFile = "Arthur";
     };
     home-manager.enable = true;
