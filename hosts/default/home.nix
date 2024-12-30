@@ -88,7 +88,7 @@
     eza = {
       enable = true;
       enableZshIntegration = true;
-      icons = true;
+      icons = "always";
       git = true;
     };
     zoxide.enable = true;

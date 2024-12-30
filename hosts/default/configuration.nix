@@ -296,8 +296,10 @@ in
 
   services.kanata = {
     enable = true;
-    keyboards.default = {
-      configFile = ./resources/kanata.kbd;
+    keyboards = {
+      main = {
+        configFile = ./resources/kanata.kbd;
+      };
     };
   };
 
