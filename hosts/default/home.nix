@@ -50,7 +50,7 @@
       enable = true;
       extraConfig = ''
       background_opacity 0.7
-      background_blur 1
+      background_blur 25
       '';
       shellIntegration.enableZshIntegration = true;
       themeFile = "Arthur";
