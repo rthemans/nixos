@@ -48,6 +48,10 @@
     };
     kitty = {
       enable = true;
+      settings = ''
+      background_opacity 0.7
+      background_blur 1
+      '';
       shellIntegration.enableZshIntegration = true;
       themeFile = "Arthur";
     };
