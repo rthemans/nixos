@@ -49,8 +49,7 @@
     kitty = {
       enable = true;
       extraConfig = ''
-      background_opacity 0.7
-      background_blur 25
+      background_opacity 0.9
       '';
       shellIntegration.enableZshIntegration = true;
       themeFile = "Arthur";
