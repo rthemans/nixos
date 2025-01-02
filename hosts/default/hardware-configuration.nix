@@ -66,7 +66,7 @@
     };
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
   hardware.nvidia = {
