@@ -198,6 +198,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Dev
+    bat
     nodejs
     jetbrains-toolbox
     maven
