@@ -213,6 +213,7 @@ in
     httpie-desktop
 
     # Utility
+    flatpak
     piper
     libratbag
     nmon
