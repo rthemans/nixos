@@ -233,7 +233,7 @@ in
 
     # Productivity
     obsidian
-    keepassxc
+    keeweb
 
     # Games
     ## Global
