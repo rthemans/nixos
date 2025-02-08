@@ -41,7 +41,7 @@
   programs = {
     tmux = {
       enable = true;
-      prefix = "F1";
+      prefix = "alt+i";
     };
     alacritty = {
       enable = true;
