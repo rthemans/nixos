@@ -39,6 +39,7 @@
 
   # Let Home Manager install and manage itself.
   programs = {
+    neovim.enable = true;
     tmux = {
       enable = true;
       prefix = "M-i";
