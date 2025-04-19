@@ -234,6 +234,7 @@ in
     # Productivity
     obsidian
     keeweb
+    trilium-next-desktop
 
     # Games
     ## Global
