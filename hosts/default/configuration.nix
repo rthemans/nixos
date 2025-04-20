@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, outputs, ... }:
+{ config, pkgs, unstable, lib, inputs, outputs, ... }:
 
 let
   grub-theme = pkgs.stdenv.mkDerivation {
@@ -196,70 +196,70 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     # Dev
-    bat
-    nodejs
-    jetbrains-toolbox
-    maven
-    jdk11
-    jdk8
-    godot_4
-    docker
-    docker-compose
-    git
-    tea
-    httpie
-    httpie-desktop
+    pkgs.bat
+    pkgs.nodejs
+    pkgs.jetbrains-toolbox
+    pkgs.maven
+    pkgs.jdk11
+    pkgs.jdk8
+    pkgs.godot_4
+    pkgs.docker
+    pkgs.docker-compose
+    pkgs.git
+    pkgs.tea
+    pkgs.httpie
+    pkgs.httpie-desktop
 
     # Utility
-    flatpak
-    piper
-    libratbag
-    nmon
-    nvtopPackages.nvidia
-    masterpdfeditor
-    wpsoffice
-    pavucontrol
-    unzip
-    pdf-sign
-    open-pdf-sign
-    eid-mw
-    hplipWithPlugin
-    xdotool
+    pkgs.flatpak
+    pkgs.piper
+    pkgs.libratbag
+    pkgs.nmon
+    pkgs.nvtopPackages.nvidia
+    pkgs.masterpdfeditor
+    pkgs.wpsoffice
+    pkgs.pavucontrol
+    pkgs.unzip
+    pkgs.pdf-sign
+    pkgs.open-pdf-sign
+    pkgs.eid-mw
+    pkgs.hplipWithPlugin
+    pkgs.xdotool
 
     # Chat
-    discord
+    pkgs.discord
 
     # Productivity
-    obsidian
-    keeweb
+    pkgs.obsidian
+    pkgs.keeweb
 
     # Games
     ## Global
-    steam-run
-    protonup
-    protontricks
+    pkgs.steam-run
+    pkgs.protonup
+    pkgs.protontricks
     
     ## minecraft launcher
-    prismlauncher
+    pkgs.prismlauncher
 
     # Terminal
-    oh-my-posh
+    pkgs.oh-my-posh
 
     # Other
-    obs-studio
-    wget
-    curl
-    gvfs
-    udisks
-    shutter
-    xboxdrv
-    openssl
-    unetbootin
+    pkgs.obs-studio
+    pkgs.wget
+    pkgs.curl
+    pkgs.gvfs
+    pkgs.udisks
+    pkgs.shutter
+    pkgs.xboxdrv
+    pkgs.openssl
+    pkgs.unetbootin
 
     # Machine Learning
-    cachix
+    pkgs.cachix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
