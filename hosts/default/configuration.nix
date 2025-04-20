@@ -234,6 +234,7 @@ in
     # Productivity
     pkgs.obsidian
     pkgs.keeweb
+    unstable.trilium-next-desktop
 
     # Games
     ## Global
