@@ -246,9 +246,6 @@ in
     ## minecraft launcher
     pkgs.prismlauncher
 
-    # Terminal
-    unstable.oh-my-posh
-
     # Other
     pkgs.obs-studio
     pkgs.wget
