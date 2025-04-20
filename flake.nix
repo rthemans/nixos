@@ -31,7 +31,9 @@
 	    {
 		    _module.args = { inherit unstable; };
 	    }
-            inputs.home-manager.nixosModules.default
+            inputs.home-manager.nixosModules.default {
+	    	home-manager.extraSpecialArgs = { inherit unstable; } ;
+	    }
           ];
         };
       server = nixpkgs.lib.nixosSystem {

@@ -1,4 +1,4 @@
-{ config, pkgs, outputs, lib, ... }:
+{ config, pkgs, unstable, outputs, lib, ... }:
 
 {
 
@@ -144,6 +144,7 @@
       };
     };
     oh-my-posh = {
+      package = unstable.oh-my-posh;
       enable = true;
       enableZshIntegration = true;
       settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile ./resources/diamond.omp.json));
