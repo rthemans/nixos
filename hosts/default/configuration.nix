@@ -211,6 +211,7 @@ in
     pkgs.tea
     pkgs.httpie
     pkgs.httpie-desktop
+    unstable.neovim
 
     # Utility
     pkgs.flatpak
