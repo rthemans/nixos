@@ -245,7 +245,7 @@ in
     pkgs.prismlauncher
 
     # Terminal
-    pkgs.oh-my-posh
+    unstable.oh-my-posh
 
     # Other
     pkgs.obs-studio
