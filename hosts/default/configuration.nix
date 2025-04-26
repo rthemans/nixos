@@ -295,14 +295,5 @@ in
   services.udisks2.enable = true;
   services.devmon.enable = true;
 
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      main = {
-        configFile = ./resources/kanata.kbd;
-      };
-    };
-  };
-
   virtualisation.docker.enable = true;
 }
