@@ -228,6 +228,7 @@ in
     pkgs.eid-mw
     pkgs.hplipWithPlugin
     pkgs.xdotool
+    pkgs.solaar
 
     # Chat
     pkgs.discord
