@@ -121,7 +121,6 @@ in
   services.displayManager = {
     # Enable automatic login for the user.
     autoLogin = {
-      enable = true;
       user = "rthemans";
     };
 
