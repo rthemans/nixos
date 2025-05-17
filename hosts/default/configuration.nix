@@ -119,14 +119,10 @@ in
   console.useXkbConfig = true;
 
   services.displayManager = {
-    # Enable automatic login for the user.
-    autoLogin = {
-      user = "rthemans";
-    };
-
+    # displays the lockscreen through ssdm
     sddm = {
       enable = true;
-      autoNumlock = true;
+      autoNumlock = false;
       # wayland.enable = true;
     };
   };
