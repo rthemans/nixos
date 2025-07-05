@@ -49,7 +49,7 @@ in
   };
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -249,7 +249,6 @@ in
     pkgs.gvfs
     pkgs.udisks
     pkgs.shutter
-    pkgs.xboxdrv
     pkgs.openssl
     pkgs.unetbootin
 
