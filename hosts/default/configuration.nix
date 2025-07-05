@@ -197,6 +197,8 @@ in
     pkgs.nodejs
     pkgs.jetbrains-toolbox
     pkgs.maven
+    pkgs.jdk21
+    pkgs.jdk17
     pkgs.jdk11
     pkgs.jdk8
     pkgs.godot_4
