@@ -191,6 +191,7 @@ in
   # $ nix search wget
   environment.systemPackages = [
     # Dev
+    pkgs.gradle
     pkgs.bat
     pkgs.nodejs
     pkgs.jetbrains-toolbox
