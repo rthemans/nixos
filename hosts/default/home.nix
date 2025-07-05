@@ -101,7 +101,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
-      initExtra = ''
+      initContent = ''
         eval "$(zoxide init --cmd cd zsh)"
       '';
 
