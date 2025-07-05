@@ -155,7 +155,6 @@ in
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
   };
   systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 
