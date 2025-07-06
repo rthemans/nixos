@@ -5,291 +5,314 @@
 { config, pkgs, unstable, lib, inputs, outputs, ... }:
 
 let
-  grub-theme = pkgs.stdenv.mkDerivation {
-      pname = "sleek-grub-theme";
-      version = "unstable-2022-06-04";
+jdkEnv = pkgs.runCommand "jdk-env" {
+	buildInputs = with pkgs; [
+		pkgs.openjdk17
+			pkgs.openjdk21
+			pkgs.temurin-bin-17
+			pkgs.temurin-bin-21
+	];
+} ''
+mkdir -p $out/jdks
+ln -s ${pkgs.openjdk17}/lib/openjdk   $out/jdks/openjdk17
+ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
+ln -s ${pkgs.temurin-bin-17}          $out/jdks/temurin17
+ln -s ${pkgs.temurin-bin-21}          $out/jdks/temurin21
+'';
+grub-theme = pkgs.stdenv.mkDerivation {
+	pname = "sleek-grub-theme";
+	version = "unstable-2022-06-04";
 
-      src = pkgs.fetchFromGitHub ({
-        owner = "sandesh236";
-        repo = "sleek--themes";
-        rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
-        hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
-      });
+	src = pkgs.fetchFromGitHub ({
+			owner = "sandesh236";
+			repo = "sleek--themes";
+			rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
+			hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
+			});
 
-      installPhase = ''
-        runHook preInstall
+	installPhase = ''
+		runHook preInstall
 
-        mkdir -p $out/
+		mkdir -p $out/
 
-        cp -r 'Sleek theme-bigSur'/sleek/* $out/
-        sed -i "s/Grub Bootloader/Bonjour Raphael/" $out/theme.txt
+		cp -r 'Sleek theme-bigSur'/sleek/* $out/
+						   sed -i "s/Grub Bootloader/Bonjour Raphael/" $out/theme.txt
 
-        runHook postInstall
-      '';
-    };
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+						   runHook postInstall
+						   '';
+						   };
+						   in
+						   {
+						   imports =
+						   [ # Include the results of the hardware scan.
+						   ./hardware-configuration.nix
+						   inputs.home-manager.nixosModules.default
+						   ];
 
-  boot.loader.grub = {
-    enable = true;
-    gfxmodeEfi = "1920x1080";
-    gfxmodeBios = "1920x1080";
-    
-    device = "/dev/sdb";
+						   boot.loader.grub = {
+						   enable = true;
+						   gfxmodeEfi = "1920x1080";
+						   gfxmodeBios = "1920x1080";
 
-    theme = lib.mkForce grub-theme;
+						   device = "/dev/sdb";
 
-    # useOSProber = true;
-    # extraEntriesBeforeNixOS = true;
-  };
+						   theme = lib.mkForce grub-theme;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+# useOSProber = true;
+# extraEntriesBeforeNixOS = true;
+};
 
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-    trusted-users = [ "root" "rthemans" ];
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
+networking.hostName = "nixos"; # Define your hostname.
+#networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.optimise = {
-    automatic = true;
-    dates = [ "21:00" ];
-  };
+nix.settings = {
+experimental-features = [ "nix-command" "flakes" ];
+auto-optimise-store = true;
+trusted-users = [ "root" "rthemans" ];
+substituters = ["https://hyprland.cachix.org"];
+trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+};
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 15d";
-  };
+nix.optimise = {
+automatic = true;
+dates = [ "21:00" ];
+};
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+nix.gc = {
+automatic = true;
+dates = "weekly";
+options = "--delete-older-than 15d";
+};
 
-  # fonts
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      roboto
-      vistafonts
-      jetbrains-mono
-    ];
+# Enable networking
+networking.networkmanager.enable = true;
 
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "JetBrains Mono Medium" ];
-      };
-    };
-  };
+# fonts
+fonts = {
+enableDefaultPackages = true;
+packages = with pkgs; [
+roboto
+vistafonts
+jetbrains-mono
+];
 
-  # Enable network manager applet
-  programs.nm-applet.enable = true;
+fontconfig = {
+defaultFonts = {
+monospace = [ "JetBrains Mono Medium" ];
+};
+};
+};
 
-  # Enable steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
+# Enable network manager applet
+programs.nm-applet.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Brussels";
+# Enable steam
+		programs.steam = {
+			enable = true;
+			remotePlay.openFirewall = true;
+		};
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+# Set your time zone.
+time.timeZone = "Europe/Brussels";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_BE.UTF-8";
-    LC_IDENTIFICATION = "fr_BE.UTF-8";
-    LC_MEASUREMENT = "fr_BE.UTF-8";
-    LC_MONETARY = "fr_BE.UTF-8";
-    LC_NAME = "fr_BE.UTF-8";
-    LC_NUMERIC = "fr_BE.UTF-8";
-    LC_PAPER = "fr_BE.UTF-8";
-    LC_TELEPHONE = "fr_BE.UTF-8";
-    LC_TIME = "fr_BE.UTF-8";
-  };
+# Select internationalisation properties.
+i18n.defaultLocale = "en_US.UTF-8";
 
-  console.useXkbConfig = true;
+i18n.extraLocaleSettings = {
+	LC_ADDRESS = "fr_BE.UTF-8";
+	LC_IDENTIFICATION = "fr_BE.UTF-8";
+	LC_MEASUREMENT = "fr_BE.UTF-8";
+	LC_MONETARY = "fr_BE.UTF-8";
+	LC_NAME = "fr_BE.UTF-8";
+	LC_NUMERIC = "fr_BE.UTF-8";
+	LC_PAPER = "fr_BE.UTF-8";
+	LC_TELEPHONE = "fr_BE.UTF-8";
+	LC_TIME = "fr_BE.UTF-8";
+};
 
-  services.displayManager = {
-    # displays the lockscreen through ssdm
-    sddm = {
-      enable = true;
-      autoNumlock = false;
-      # wayland.enable = true;
-    };
-  };
+console.useXkbConfig = true;
 
-  # programs.hyprland.enable = true;
+services.displayManager = {
+# displays the lockscreen through ssdm
+	sddm = {
+		enable = true;
+		autoNumlock = false;
+# wayland.enable = true;
+	};
+};
 
-  services.xserver = {
-    # Enable the X11 windowing system.
-    enable = true;
+# programs.hyprland.enable = true;
 
-    # Nvidia driver
-    videoDrivers = ["displayLink" "nvidia"];
-    
-    # Configure keymap in X11    
-    xkb.layout = "fr";
-    xkb.variant = "bepo";
-    exportConfiguration = true;
-    
-    desktopManager.budgie.enable = true;
-  };
+services.xserver = {
+# Enable the X11 windowing system.
+	enable = true;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+# Nvidia driver
+	videoDrivers = ["nvidia"];
 
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-  };
-  systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
+# Configure keymap in X11    
+	xkb.layout = "fr";
+	xkb.variant = "bepo";
+	exportConfiguration = true;
 
-  # bluetooth cli
-  services.blueman.enable = true;
+	desktopManager.budgie.enable = true;
+};
 
-  # enable zsh at system level
-  programs.zsh.enable = true;
+# Enable CUPS to print documents.
+services.printing.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rthemans = {
-    isNormalUser = true;
-    description = "rthemans";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
-    shell = pkgs.zsh;
-  };
+# Enable sound with pipewire.
+security.rtkit.enable = true;
 
-  home-manager = {
-    # also pass inputs to home-manager modules
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "rthemans" = import ./home.nix;
-    };
-  };
+services.pipewire = {
+	enable = true;
+	alsa.enable = true;
+	alsa.support32Bit = true;
+};
+systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
+# bluetooth cli
+services.blueman.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = [
-    # Dev
-    pkgs.gradle
-    pkgs.bat
-    pkgs.nodejs
-    pkgs.jetbrains-toolbox
-    pkgs.maven
-    pkgs.jdk21
-    pkgs.jdk17
-    pkgs.jdk11
-    pkgs.jdk8
-    pkgs.godot_4
-    pkgs.docker
-    pkgs.docker-compose
-    pkgs.git
-    pkgs.tea
-    pkgs.httpie
-    pkgs.httpie-desktop
-    unstable.neovim
+# enable zsh at system level
+programs.zsh.enable = true;
 
-    # Utility
-    pkgs.flatpak
-    pkgs.piper
-    pkgs.libratbag
-    pkgs.nmon
-    pkgs.nvtopPackages.nvidia
-    pkgs.masterpdfeditor
-    pkgs.wpsoffice
-    pkgs.pavucontrol
-    pkgs.unzip
-    pkgs.pdf-sign
-    pkgs.open-pdf-sign
-    pkgs.eid-mw
-    pkgs.hplipWithPlugin
-    pkgs.xdotool
-    pkgs.solaar
+# Define a user account. Don't forget to set a password with ‘passwd’.
+users.users.rthemans = {
+	isNormalUser = true;
+	description = "rthemans";
+	extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
+	packages = with pkgs; [
+		firefox
+#  thunderbird
+	];
+	shell = pkgs.zsh;
+};
 
-    # Chat
-    pkgs.discord
+home-manager = {
+# also pass inputs to home-manager modules
+	extraSpecialArgs = { inherit inputs; };
+	users = {
+		"rthemans" = import ./home.nix;
+	};
+};
 
-    # Productivity
-    pkgs.obsidian
-    pkgs.keeweb
-    unstable.trilium-next-desktop
+# Allow unfree packages
+nixpkgs.config.allowUnfree = true;
+nixpkgs.config.cudaSupport = true;
+# setup for jdks
+environment.pathsToLink = [ "/jdks" ];
+system.activationScripts.jdkSymlinks.text = ''
+    mkdir -p /opt
+    chmod 755 /opt
 
-    # Games
-    ## Global
-    pkgs.steam-run
-    pkgs.protonup
-    pkgs.protontricks
-    
-    ## minecraft launcher
-    pkgs.prismlauncher
+    ln -sfT /run/current-system/sw/jdks /opt/java
+    '';
 
-    # Other
-    pkgs.obs-studio
-    pkgs.wget
-    pkgs.curl
-    pkgs.gvfs
-    pkgs.udisks
-    pkgs.shutter
-    pkgs.openssl
-    pkgs.unetbootin
+# List packages installed in system profile. To search, run:
+# $ nix search wget
+environment.systemPackages = [
+	jdkEnv
+# Dev
+	pkgs.gradle
+	pkgs.bat
+	pkgs.nodejs
+	pkgs.jetbrains-toolbox
+	pkgs.maven
+	pkgs.jdk21
+	pkgs.jdk17
+	pkgs.jdk11
+	pkgs.jdk8
+	pkgs.godot_4
+	pkgs.docker
+	pkgs.docker-compose
+	pkgs.git
+	pkgs.tea
+	pkgs.httpie
+	pkgs.httpie-desktop
+	unstable.neovim
 
-    # Machine Learning
-    pkgs.cachix
-  ];
+# Utility
+	pkgs.flatpak
+	pkgs.piper
+	pkgs.libratbag
+	pkgs.nmon
+	pkgs.nvtopPackages.nvidia
+	pkgs.masterpdfeditor
+	pkgs.wpsoffice
+	pkgs.pavucontrol
+	pkgs.unzip
+	pkgs.pdf-sign
+	pkgs.open-pdf-sign
+	pkgs.eid-mw
+	pkgs.hplipWithPlugin
+	pkgs.xdotool
+	pkgs.solaar
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+# Chat
+	pkgs.discord
 
-  # List services that you want to enable:
+# Productivity
+	pkgs.obsidian
+	pkgs.keeweb
+	unstable.trilium-next-desktop
 
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-  };
+# Games
+## Global
+	pkgs.steam-run
+	pkgs.protonup
+	pkgs.protontricks
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+## minecraft launcher
+	pkgs.prismlauncher
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+# Other
+	pkgs.obs-studio
+	pkgs.wget
+	pkgs.curl
+	pkgs.gvfs
+	pkgs.udisks
+	pkgs.shutter
+	pkgs.openssl
+	pkgs.unetbootin
 
-  # enable usb
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
-  services.devmon.enable = true;
+# Machine Learning
+	pkgs.cachix
+	];
 
-  virtualisation.docker.enable = true;
+# Some programs need SUID wrappers, can be configured further or are
+# started in user sessions.
+# programs.mtr.enable = true;
+# programs.gnupg.agent = {
+#   enable = true;
+#   enableSSHSupport = true;
+# };
+
+# List services that you want to enable:
+
+# Enable the OpenSSH daemon.
+	services.openssh = {
+		enable = true;
+	};
+
+# Open ports in the firewall.
+networking.firewall.allowedTCPPorts = [ 22 ];
+# networking.firewall.allowedUDPPorts = [ ... ];
+# Or disable the firewall altogether.
+# networking.firewall.enable = false;
+
+# This value determines the NixOS release from which the default
+# settings for stateful data, like file locations and database versions
+# on your system were taken. It‘s perfectly fine and recommended to leave
+# this value at the release version of the first install of this system.
+# Before changing this value read the documentation for this option
+# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+system.stateVersion = "23.11"; # Did you read the comment?
+
+# enable usb
+services.gvfs.enable = true;
+services.udisks2.enable = true;
+services.devmon.enable = true;
+
+virtualisation.docker.enable = true;
 }
