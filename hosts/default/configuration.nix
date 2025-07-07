@@ -5,57 +5,56 @@
 { config, pkgs, unstable, lib, inputs, outputs, ... }:
 
 let
-tokyoNightTheme = pkgs.callPackage ./tokyo-night-sddm.nix {};
 jdkEnv = pkgs.runCommand "jdk-env" {
-	buildInputs = with pkgs; [
-		pkgs.openjdk17
-			pkgs.openjdk21
-			pkgs.temurin-bin-17
-			pkgs.temurin-bin-21
-	];
+    buildInputs = with pkgs; [
+        pkgs.openjdk17
+            pkgs.openjdk21
+            pkgs.temurin-bin-17
+            pkgs.temurin-bin-21
+    ];
 } ''
 mkdir -p $out/jdks
 ln -s ${pkgs.openjdk17}/lib/openjdk   $out/jdks/openjdk17
 ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
 '';
 grub-theme = pkgs.stdenv.mkDerivation {
-	pname = "sleek-grub-theme";
-	version = "unstable-2022-06-04";
+    pname = "sleek-grub-theme";
+    version = "unstable-2022-06-04";
 
-	src = pkgs.fetchFromGitHub ({
-			owner = "sandesh236";
-			repo = "sleek--themes";
-			rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
-			hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
-			});
+    src = pkgs.fetchFromGitHub ({
+            owner = "sandesh236";
+            repo = "sleek--themes";
+            rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
+            hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
+            });
 
-	installPhase = ''
-		runHook preInstall
+    installPhase = ''
+        runHook preInstall
 
-		mkdir -p $out/
+        mkdir -p $out/
 
-		cp -r 'Sleek theme-bigSur'/sleek/* $out/
-						   sed -i "s/Grub Bootloader/Bonjour Raphael/" $out/theme.txt
+        cp -r 'Sleek theme-bigSur'/sleek/* $out/
+                                           sed -i "s/Grub Bootloader/Bonjour Raphael/" $out/theme.txt
 
-						   runHook postInstall
-						   '';
-						   };
-						   in
-						   {
-						   imports =
-						   [ # Include the results of the hardware scan.
-						   ./hardware-configuration.nix
-						   inputs.home-manager.nixosModules.default
-						   ];
+                                           runHook postInstall
+                                           '';
+                                           };
+                                           in
+                                           {
+                                           imports =
+                                           [ # Include the results of the hardware scan.
+                                           ./hardware-configuration.nix
+                                           inputs.home-manager.nixosModules.default
+                                           ];
 
-						   boot.loader.grub = {
-						   enable = true;
-						   gfxmodeEfi = "1920x1080";
-						   gfxmodeBios = "1920x1080";
+                                           boot.loader.grub = {
+                                           enable = true;
+                                           gfxmodeEfi = "1920x1080";
+                                           gfxmodeBios = "1920x1080";
 
-						   device = "/dev/sdb";
+                                           device = "/dev/sdb";
 
-						   theme = lib.mkForce grub-theme;
+                                           theme = lib.mkForce grub-theme;
 
 # useOSProber = true;
 # extraEntriesBeforeNixOS = true;
@@ -106,10 +105,10 @@ monospace = [ "JetBrains Mono Medium" ];
 programs.nm-applet.enable = true;
 
 # Enable steam
-		programs.steam = {
-			enable = true;
-			remotePlay.openFirewall = true;
-		};
+        programs.steam = {
+            enable = true;
+            remotePlay.openFirewall = true;
+        };
 
 # Set your time zone.
 time.timeZone = "Europe/Brussels";
@@ -118,44 +117,45 @@ time.timeZone = "Europe/Brussels";
 i18n.defaultLocale = "en_US.UTF-8";
 
 i18n.extraLocaleSettings = {
-	LC_ADDRESS = "fr_BE.UTF-8";
-	LC_IDENTIFICATION = "fr_BE.UTF-8";
-	LC_MEASUREMENT = "fr_BE.UTF-8";
-	LC_MONETARY = "fr_BE.UTF-8";
-	LC_NAME = "fr_BE.UTF-8";
-	LC_NUMERIC = "fr_BE.UTF-8";
-	LC_PAPER = "fr_BE.UTF-8";
-	LC_TELEPHONE = "fr_BE.UTF-8";
-	LC_TIME = "fr_BE.UTF-8";
+    LC_ADDRESS = "fr_BE.UTF-8";
+    LC_IDENTIFICATION = "fr_BE.UTF-8";
+    LC_MEASUREMENT = "fr_BE.UTF-8";
+    LC_MONETARY = "fr_BE.UTF-8";
+    LC_NAME = "fr_BE.UTF-8";
+    LC_NUMERIC = "fr_BE.UTF-8";
+    LC_PAPER = "fr_BE.UTF-8";
+    LC_TELEPHONE = "fr_BE.UTF-8";
+    LC_TIME = "fr_BE.UTF-8";
 };
 
 console.useXkbConfig = true;
 
 services.displayManager = {
 # displays the lockscreen through ssdm
-	sddm = {
-		enable = true;
-		autoNumlock = false;
-		wayland.enable = true;
-		theme = "tokyo-night-sddm";
-	};
+    sddm = {
+        enable = true;
+        autoNumlock = false;
+        wayland.enable = true;
+        theme = "catppuccin-mocha";
+        package = pkgs.kdePackages.sddm;
+    };
 };
 
 programs.hyprland.enable = true;
 
 services.xserver = {
 # Enable the X11 windowing system.
-	enable = true;
+    enable = true;
 
 # Nvidia driver
-	videoDrivers = ["nvidia"];
+    videoDrivers = ["nvidia"];
 
 # Configure keymap in X11    
-	xkb.layout = "fr";
-	xkb.variant = "bepo";
-	exportConfiguration = true;
+    xkb.layout = "fr";
+    xkb.variant = "bepo";
+    exportConfiguration = true;
 
-	desktopManager.budgie.enable = true;
+    desktopManager.budgie.enable = true;
 };
 
 # Enable CUPS to print documents.
@@ -165,9 +165,9 @@ services.printing.enable = true;
 security.rtkit.enable = true;
 
 services.pipewire = {
-	enable = true;
-	alsa.enable = true;
-	alsa.support32Bit = true;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
 };
 systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 
@@ -179,22 +179,22 @@ programs.zsh.enable = true;
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
 users.users.rthemans = {
-	isNormalUser = true;
-	description = "rthemans";
-	extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
-	packages = with pkgs; [
-		firefox
+    isNormalUser = true;
+    description = "rthemans";
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
+    packages = with pkgs; [
+        firefox
 #  thunderbird
-	];
-	shell = pkgs.zsh;
+    ];
+    shell = pkgs.zsh;
 };
 
 home-manager = {
 # also pass inputs to home-manager modules
-	extraSpecialArgs = { inherit inputs; };
-	users = {
-		"rthemans" = import ./home.nix;
-	};
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+        "rthemans" = import ./home.nix;
+    };
 };
 
 # Allow unfree packages
@@ -212,74 +212,76 @@ ln -sfT /run/current-system/sw/jdks /opt/java
 # List packages installed in system profile. To search, run:
 # $ nix search wget
 environment.systemPackages = [
-	jdkEnv
-	tokyoNightTheme
+# variable
+    jdkEnv
+# theme
+    pkgs.catppuccin-sddm
 # Dev
-	pkgs.gradle
-	pkgs.bat
-	pkgs.nodejs
-	pkgs.jetbrains-toolbox
-	pkgs.maven
-	pkgs.jdk21
-	pkgs.jdk17
-	pkgs.jdk11
-	pkgs.jdk8
-	pkgs.godot_4
-	pkgs.docker
-	pkgs.docker-compose
-	pkgs.git
-	pkgs.tea
-	pkgs.httpie
-	pkgs.httpie-desktop
-	unstable.neovim
+    pkgs.gradle
+    pkgs.bat
+    pkgs.nodejs
+    pkgs.jetbrains-toolbox
+    pkgs.maven
+    pkgs.jdk21
+    pkgs.jdk17
+    pkgs.jdk11
+    pkgs.jdk8
+    pkgs.godot_4
+    pkgs.docker
+    pkgs.docker-compose
+    pkgs.git
+    pkgs.tea
+    pkgs.httpie
+    pkgs.httpie-desktop
+    unstable.neovim
 
 # Utility
-	pkgs.flatpak
-	pkgs.piper
-	pkgs.libratbag
-	pkgs.nmon
-	pkgs.nvtopPackages.nvidia
-	pkgs.masterpdfeditor
-	pkgs.wpsoffice
-	pkgs.pavucontrol
-	pkgs.unzip
-	pkgs.pdf-sign
-	pkgs.open-pdf-sign
-	pkgs.eid-mw
-	pkgs.hplipWithPlugin
-	pkgs.xdotool
-	pkgs.solaar
+    pkgs.flatpak
+    pkgs.piper
+    pkgs.libratbag
+    pkgs.nmon
+    pkgs.nvtopPackages.nvidia
+    pkgs.masterpdfeditor
+    pkgs.wpsoffice
+    pkgs.pavucontrol
+    pkgs.unzip
+    pkgs.pdf-sign
+    pkgs.open-pdf-sign
+    pkgs.eid-mw
+    pkgs.hplipWithPlugin
+    pkgs.xdotool
+    pkgs.solaar
 
 # Chat
-	pkgs.discord
+    pkgs.discord
 
 # Productivity
-	pkgs.obsidian
-	pkgs.keeweb
-	unstable.trilium-next-desktop
+    pkgs.obsidian
+    pkgs.keeweb
+    unstable.trilium-next-desktop
 
 # Games
 ## Global
-	pkgs.steam-run
-	pkgs.protonup
-	pkgs.protontricks
+    pkgs.steam-run
+    pkgs.protonup
+    pkgs.protontricks
 
 ## minecraft launcher
-	pkgs.prismlauncher
+    pkgs.prismlauncher
 
 # Other
-	pkgs.obs-studio
-	pkgs.wget
-	pkgs.curl
-	pkgs.gvfs
-	pkgs.udisks
-	pkgs.shutter
-	pkgs.openssl
-	pkgs.unetbootin
+    pkgs.obs-studio
+    pkgs.wget
+    pkgs.curl
+    pkgs.gvfs
+    pkgs.udisks
+    pkgs.shutter
+    pkgs.openssl
+    pkgs.unetbootin
 
 # Machine Learning
-	pkgs.cachix
-	];
+    pkgs.cachix
+    ];
 
 # Some programs need SUID wrappers, can be configured further or are
 # started in user sessions.
@@ -292,9 +294,9 @@ environment.systemPackages = [
 # List services that you want to enable:
 
 # Enable the OpenSSH daemon.
-	services.openssh = {
-		enable = true;
-	};
+    services.openssh = {
+        enable = true;
+    };
 
 # Open ports in the firewall.
 networking.firewall.allowedTCPPorts = [ 22 ];
