@@ -28,6 +28,9 @@
         enable = true;
 
         settings = {
+            exec-once = [
+                "exec-once = systemctl --user start hyprpolkitagent"
+            ];
             monitor = [
                 "Unknown-3, 1920x1080@239.96, 0x0, 1"
                     "Unknown-2, 1920x1080@60.00, 1920x0, 1"

@@ -216,6 +216,8 @@ environment.systemPackages = [
     jdkEnv
 # theme
     pkgs.catppuccin-sddm
+# wayland
+    pkgs.hyprpolkitagent
 # Dev
     pkgs.gradle
     pkgs.bat
