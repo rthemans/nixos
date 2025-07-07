@@ -16,8 +16,6 @@ jdkEnv = pkgs.runCommand "jdk-env" {
 mkdir -p $out/jdks
 ln -s ${pkgs.openjdk17}/lib/openjdk   $out/jdks/openjdk17
 ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
-ln -s ${pkgs.temurin-bin-17}          $out/jdks/temurin17
-ln -s ${pkgs.temurin-bin-21}          $out/jdks/temurin21
 '';
 grub-theme = pkgs.stdenv.mkDerivation {
 	pname = "sleek-grub-theme";
@@ -137,11 +135,11 @@ services.displayManager = {
 	sddm = {
 		enable = true;
 		autoNumlock = false;
-# wayland.enable = true;
+		wayland.enable = true;
 	};
 };
 
-# programs.hyprland.enable = true;
+programs.hyprland.enable = true;
 
 services.xserver = {
 # Enable the X11 windowing system.
@@ -203,11 +201,11 @@ nixpkgs.config.cudaSupport = true;
 # setup for jdks
 environment.pathsToLink = [ "/jdks" ];
 system.activationScripts.jdkSymlinks.text = ''
-    mkdir -p /opt
-    chmod 755 /opt
+mkdir -p /opt
+chmod 755 /opt
 
-    ln -sfT /run/current-system/sw/jdks /opt/java
-    '';
+ln -sfT /run/current-system/sw/jdks /opt/java
+'';
 
 # List packages installed in system profile. To search, run:
 # $ nix search wget
