@@ -28,6 +28,10 @@
     enable = true;
 
     settings = {
+      monitor = [
+      	"Unknown-3, 1920x1080@239.96, 0x0, 1"
+      	"Unknown-2, 1920x1080@60.00, 1920x0, 1"
+	];
       "$mod" = "SUPER";
 
       input = {
@@ -38,25 +42,11 @@
       "$mod, RETURN, exec, kitty"
       "$mod, Q, killactive,"
       "$mod, M, exit"
-      "$mod SHIFT, S, movetomonitor, r"
-      "$mod SHIFT, A, movetomonitor, l"
-      "$mod, R, submap, resize"
     ];
-
-    bindm = [
-      "$mod, mouse:BTN_MIDDLE, movetomonitor, r"
-      "$mod, mouse:BTN_RIGHT, resizewindow"
-    ];
-
-    submap = {
-      resize = [
-        "$mod, H, resizeactive, -20 0"
-        "$mod, L, resizeactive, 20 0"
-        "$mod, K, resizeactive, 0 -20"
-        "$mod, J, resizeactive, 0 20"
-        "$mod, R, submap, reset"
-      ];
-    };
+	bindm = [
+	"ALT, mouse:272, movewindow"
+	"ALT, mouse:272, togglefloating"
+	];
     };
   };
 
@@ -65,6 +55,7 @@
     tmux = {
       enable = true;
       prefix = "M-i";
+      keyMode = "vi";
     };
     alacritty = {
       enable = true;

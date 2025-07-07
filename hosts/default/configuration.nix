@@ -5,6 +5,7 @@
 { config, pkgs, unstable, lib, inputs, outputs, ... }:
 
 let
+tokyoNightTheme = pkgs.callPackage ./tokyo-night-sddm.nix {};
 jdkEnv = pkgs.runCommand "jdk-env" {
 	buildInputs = with pkgs; [
 		pkgs.openjdk17
@@ -136,6 +137,7 @@ services.displayManager = {
 		enable = true;
 		autoNumlock = false;
 		wayland.enable = true;
+		theme = "tokyo-night-sddm";
 	};
 };
 
@@ -211,6 +213,7 @@ ln -sfT /run/current-system/sw/jdks /opt/java
 # $ nix search wget
 environment.systemPackages = [
 	jdkEnv
+	tokyoNightTheme
 # Dev
 	pkgs.gradle
 	pkgs.bat
