@@ -8,9 +8,13 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anyrun = {
+        url = "github:anyrun-org/anyrun";
+        inputs.nixpkgs.follows = "nixunspkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixunspkgs, ... }@inputs:
+  outputs = { self, nixpkgs, nixunspkgs, anyrun, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -29,6 +33,7 @@
           modules = [ 
             ./hosts/default/configuration.nix
 	    {
+            environment.systemPackages = [ anyrun.packages.${system}.anyrun ];
 		    _module.args = { inherit unstable; };
 	    }
             inputs.home-manager.nixosModules.default {
