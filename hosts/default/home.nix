@@ -142,39 +142,10 @@
                 maxEntries = null;
                 plugins = [
                     inputs.anyrun.packages.${pkgs.system}.applications
-                    inputs.anyrun.packages.${pkgs.system}.rink
+                        inputs.anyrun.packages.${pkgs.system}.rink
                 ];
             };
-            extraConfigFiles."style.css".text = ''
-            /* On applique à la fenêtre principale */
-window, #window, #main {
-  background-color: rgba(0, 0, 0, 0.5); /* fond semi-transparent noir */
-  border-radius: 8px;
-}
-
-/* Centrage de la fenêtre */
-#window {
-  margin: auto; /* centré horizontalement et verticalement */
-width: 50vw;  /* (ajuste la largeur à 50% de l'écran) */
-}
-
-/* Entrée de texte (la barre) */
-entry, #entry {
-    font-family: "Fira Code", monospace;
-    font-size: 18px;
-color: #ffffff;
-background: transparent;
-}
-
-/* Style des résultats */
-match, #match, plugin, #plugin {
-    font-family: "Fira Code", monospace;
-    font-size: 16px;
-color: #ddd;
-background: transparent;
-}
-
-            '';
+            extraConfigFiles."style.css".text = (builtins.readFile ./resources/anyrun/style.css);
         };
         oh-my-posh = {
             package = unstable.oh-my-posh;
