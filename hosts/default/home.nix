@@ -127,6 +127,7 @@
                 };
             };
         };
+        # wayland stuff
         anyrun = {
             enable = true;
             config = {
@@ -147,6 +148,8 @@
             };
             extraConfigFiles."style.css".text = (builtins.readFile ./resources/anyrun/style.css);
         };
+        waybar.enable = true;
+        # utils
         oh-my-posh = {
             package = unstable.oh-my-posh;
             enable = true;
