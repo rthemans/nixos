@@ -22,6 +22,22 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752064814,
+        "narHash": "sha256-YBC5k+Ett55lq4aRiZPhU1dq7NQCQGeDeEAly7xz+5c=",
+        "owner": "rthemans",
+        "repo": "dotfiles",
+        "rev": "ede698bfec41d75a14fe4c51737fb04917b8a900",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rthemans",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -99,6 +115,7 @@
     "root": {
       "inputs": {
         "anyrun": "anyrun",
+        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixunspkgs": "nixunspkgs"
