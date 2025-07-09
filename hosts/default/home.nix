@@ -16,7 +16,7 @@
 
 # dotfiles management
         file = {
-
+            ".config/hypr" = { source = ./resources/hypr; recursive = true; };
         };
 
         sessionVariables = {
@@ -24,47 +24,8 @@
         };
     };
 
-    wayland.windowManager.hyprland = {
-        enable = true;
+    wayland.windowManager.hyprland.enable = true;
 
-        settings = {
-            exec-once = [
-                "exec-once = systemctl --user start hyprpolkitagent"
-            ];
-            monitor = [
-                "Unknown-3, 1920x1080@239.96, 0x0, 1"
-                    "Unknown-2, 1920x1080@60.00, 1920x0, 1"
-            ];
-
-            input = {
-                kb_layout = "fr";
-                kb_variant = "bepo";
-            };
-        };
-        extraConfig = ''
-            $mod = ALT_SHIFT
-            bind = ALT, M, submap, move
-            submap = move
-            binde = , l, movefocus, r
-            binde = , h, movefocus, l
-            binde = , j, movefocus, u
-            binde = , k, movefocus, d
-            bind = , escape, submap, reset
-            submap = reset
-
-            bind = $mod, RETURN, exec, kitty
-            bind = $mod, Q, killactive,
-            bind = $mod, M, exit
-            bind = $mod, F, fullscreen, 0
-            bind = $mod, L, movefocus, r
-            bind = $mod, H, movefocus, l
-            bind = $mod, J, movefocus, u
-            bind = $mod, K, movefocus, d
-            bind = $mod_SHIFT, S, exec, anyrun
-            bindm = ALT, mouse:272, movewindow
-            bindm = ALT, mouse:272, togglefloating
-            '';
-    };
 
 # Let Home Manager install and manage itself.
     programs = {
