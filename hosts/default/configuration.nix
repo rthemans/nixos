@@ -89,8 +89,7 @@ networking.networkmanager.enable = true;
 fonts = {
 enableDefaultPackages = true;
 packages = with pkgs; [
-nerd-fonts.font-awesome
-roboto
+nerd-fonts.roboto-mono
 vistafonts
 jetbrains-mono
 ];
