@@ -14,7 +14,7 @@
     };
     dotfiles = {
         url = "github:rthemans/dotfiles";
-        flake = false
+        flake = false;
     };
   };
 
