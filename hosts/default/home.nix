@@ -35,23 +35,35 @@
                 "Unknown-3, 1920x1080@239.96, 0x0, 1"
                     "Unknown-2, 1920x1080@60.00, 1920x0, 1"
             ];
-            "$mod" = "ALT_SHIFT";
 
             input = {
                 kb_layout = "fr";
                 kb_variant = "bepo";
             };
-            bind = [
-                "$mod, RETURN, exec, kitty"
-                    "$mod, Q, killactive,"
-                    "$mod, M, exit"
-                    "$mod_SHIFT, S, exec, anyrun"
-            ];
-            bindm = [
-                "ALT, mouse:272, movewindow"
-                    "ALT, mouse:272, togglefloating"
-            ];
         };
+        extraConfig = ''
+            $mod = ALT_SHIFT
+            bind = ALT, M, submap, move
+            submap = move
+            binde = , l, movefocus, r
+            binde = , h, movefocus, l
+            binde = , j, movefocus, u
+            binde = , k, movefocus, d
+            bind = , escape, submap, reset
+            submap = reset
+
+            bind = $mod, RETURN, exec, kitty
+            bind = $mod, Q, killactive,
+            bind = $mod, M, exit
+            bind = $mod, F, fullscreen, 0
+            bind = $mod, L, movefocus, r
+            bind = $mod, H, movefocus, l
+            bind = $mod, J, movefocus, u
+            bind = $mod, K, movefocus, d
+            bind = $mod_SHIFT, S, exec, anyrun
+            bindm = ALT, mouse:272, movewindow
+            bindm = ALT, mouse:272, togglefloating
+            '';
     };
 
 # Let Home Manager install and manage itself.
@@ -164,15 +176,15 @@
         anyrun = {
             enable = true;
             config = {
-                x = { fraction = 0.5; };
-                y = { fraction = 0.3; };
-                width = { fraction = 0.3; };
+                x.fraction = 0.5;
+                y.fraction = 0.3;
+                width.fraction = 0.3;
                 hideIcons = false;
                 ignoreExclusiveZones = false;
-                layer = "overlay";
+                layer = "top";
                 hidePluginInfo = false;
                 closeOnClick = false;
-                showResultsImmediately = false;
+                showResultsImmediately = true;
                 maxEntries = null;
                 plugins = [
                     inputs.anyrun.packages.${pkgs.system}.applications

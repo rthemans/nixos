@@ -218,6 +218,7 @@ environment.systemPackages = [
     pkgs.catppuccin-sddm
 # wayland
     pkgs.hyprpolkitagent
+    pkgs.dbus
 # Dev
     pkgs.gradle
     pkgs.bat
