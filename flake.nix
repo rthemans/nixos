@@ -12,9 +12,13 @@
         url = "github:anyrun-org/anyrun";
         inputs.nixpkgs.follows = "nixunspkgs";
     };
+    dotfiles = {
+        url = "github:rthemans/dotfiles";
+        flake = false
+    };
   };
 
-  outputs = { self, nixpkgs, nixunspkgs, anyrun, ... }@inputs:
+  outputs = { self, nixpkgs, nixunspkgs, anyrun, dotfiles, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
