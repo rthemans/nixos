@@ -16,7 +16,7 @@
 
 # dotfiles management
         file = {
-            ".config/hypr" = { source = ./resources/hypr; recursive = true; };
+            ".config/" = { source = inputs.dotfiles; recursive = true; };
         };
 
         sessionVariables = {
@@ -29,14 +29,7 @@
 
 # Let Home Manager install and manage itself.
     programs = {
-        tmux = {
-            enable = true;
-            prefix = "M-i";
-            keyMode = "vi";
-        };
-        alacritty = {
-            enable = true;
-        };
+        tmux.enable = true;
         kitty = {
             enable = true;
             extraConfig = ''
