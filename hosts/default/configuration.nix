@@ -5,6 +5,7 @@
 { config, pkgs, unstable, lib, inputs, outputs, ... }:
 
 let
+sddm-astro = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
 jdkEnv = pkgs.runCommand "jdk-env" {
     buildInputs = with pkgs; [
         pkgs.openjdk17
@@ -116,7 +117,9 @@ services.displayManager = {
         wayland.enable = true;
         theme = "sddm-astronaut-theme";
         package = pkgs.kdePackages.sddm;
-        extraPackages = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
+        extraPackages = [
+        sddm-astro
+        ];
     };
 };
 
@@ -127,7 +130,7 @@ services.xserver = {
     enable = true;
 
 # Nvidia driver
-    videoDrivers = ["nvidia"];
+    videoDrivers = ["nouveau"];
 
 # Configure keymap in X11    
     xkb.layout = "fr";
@@ -195,6 +198,7 @@ environment.systemPackages = [
     jdkEnv
 # theme
     pkgs.sleek-grub-theme
+    sddm-astro
 # wayland
     pkgs.hyprpolkitagent
     pkgs.dbus

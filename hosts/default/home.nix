@@ -94,7 +94,10 @@
             };
 
             shellAliases = {
-                rebuild = "nix flake update && sudo nixos-rebuild switch --flake ~/nixos#default";
+                rebuild = "sudo nixos-rebuild switch --flake ~/nixos#default";
+                rb = "rebuild";
+                full-rebuild = "nix flake update && rebuild";
+                frb = "full-rebuild";
                 switch-bepo = "setxkbmap fr -variant bepo";
                 sb = "switch-bepo";
                 switch-qwerty = "setxkbmap us";
