@@ -38,7 +38,7 @@ theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withS
 # extraEntriesBeforeNixOS = true;
 };
 
-networking.hostName = "nixos"; # Define your hostname.
+networking.hostName = "default"; # Define your hostname.
 #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 nix.settings = {
@@ -83,10 +83,10 @@ monospace = [ "JetBrains Mono Medium" ];
 programs.nm-applet.enable = true;
 
 # Enable steam
-        programs.steam = {
-            enable = true;
-            remotePlay.openFirewall = true;
-        };
+programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+};
 
 # Set your time zone.
 time.timeZone = "Europe/Brussels";
@@ -114,8 +114,9 @@ services.displayManager = {
         enable = true;
         autoNumlock = false;
         wayland.enable = true;
-        theme = "catppuccin-mocha";
+        theme = "sddm-astronaut-theme";
         package = pkgs.kdePackages.sddm;
+        extraPackages = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
     };
 };
 
@@ -193,7 +194,6 @@ environment.systemPackages = [
 # variable
     jdkEnv
 # theme
-    pkgs.catppuccin-sddm
     pkgs.sleek-grub-theme
 # wayland
     pkgs.hyprpolkitagent
