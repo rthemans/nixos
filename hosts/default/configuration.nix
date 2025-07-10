@@ -8,53 +8,31 @@ let
 jdkEnv = pkgs.runCommand "jdk-env" {
     buildInputs = with pkgs; [
         pkgs.openjdk17
-            pkgs.openjdk21
-            pkgs.temurin-bin-17
-            pkgs.temurin-bin-21
+        pkgs.openjdk21
+        pkgs.openjdk23
     ];
 } ''
 mkdir -p $out/jdks
 ln -s ${pkgs.openjdk17}/lib/openjdk   $out/jdks/openjdk17
 ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
+ln -s ${pkgs.openjdk23}/lib/openjdk   $out/jdks/openjdk23
 '';
-grub-theme = pkgs.stdenv.mkDerivation {
-    pname = "sleek-grub-theme";
-    version = "unstable-2022-06-04";
+in
+{
+imports =
+[ # Include the results of the hardware scan.
+./hardware-configuration.nix
+inputs.home-manager.nixosModules.default
+];
 
-    src = pkgs.fetchFromGitHub ({
-            owner = "sandesh236";
-            repo = "sleek--themes";
-            rev = "981326a8e35985dc23f1b066fdbe66ff09df2371";
-            hash = "sha256-yD4JuoFGTXE/aI76EtP4rEWCc5UdFGi7Ojys6Yp8Z58=";
-            });
+boot.loader.grub = {
+enable = true;
+gfxmodeEfi = "1920x1080";
+gfxmodeBios = "1920x1080";
 
-    installPhase = ''
-        runHook preInstall
+device = "/dev/sdb";
 
-        mkdir -p $out/
-
-        cp -r 'Sleek theme-bigSur'/sleek/* $out/
-                                           sed -i "s/Grub Bootloader/Bonjour Raphael/" $out/theme.txt
-
-                                           runHook postInstall
-                                           '';
-                                           };
-                                           in
-                                           {
-                                           imports =
-                                           [ # Include the results of the hardware scan.
-                                           ./hardware-configuration.nix
-                                           inputs.home-manager.nixosModules.default
-                                           ];
-
-                                           boot.loader.grub = {
-                                           enable = true;
-                                           gfxmodeEfi = "1920x1080";
-                                           gfxmodeBios = "1920x1080";
-
-                                           device = "/dev/sdb";
-
-                                           theme = lib.mkForce grub-theme;
+theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!", withStyle = "bigSur"};
 
 # useOSProber = true;
 # extraEntriesBeforeNixOS = true;
@@ -216,6 +194,7 @@ environment.systemPackages = [
     jdkEnv
 # theme
     pkgs.catppuccin-sddm
+    pkgs.sleek-grub-theme
 # wayland
     pkgs.hyprpolkitagent
     pkgs.dbus
