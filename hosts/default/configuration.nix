@@ -32,7 +32,7 @@ gfxmodeBios = "1920x1080";
 
 device = "/dev/sdb";
 
-theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!", withStyle = "bigSur"};
+theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
 
 # useOSProber = true;
 # extraEntriesBeforeNixOS = true;
