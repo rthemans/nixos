@@ -178,6 +178,7 @@ users.users.rthemans = {
 home-manager = {
 # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "hmbackup";
     users = {
         "rthemans" = import ./home.nix;
     };
