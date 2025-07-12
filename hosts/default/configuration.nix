@@ -162,7 +162,9 @@ services.blueman.enable = true;
 programs.zsh.enable = true;
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
+users.mutableUsers = false;
 users.users.rthemans = {
+    hashedPassword = "$y$j9T$zQYPCbLq8..vy/I3DUCTT0$LD9Z4byg1OC/EG40TfdAu.tLEqiogZPG7iJw7wLwGXC";
     isNormalUser = true;
     description = "rthemans";
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
