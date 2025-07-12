@@ -163,6 +163,8 @@
 
     services = {
         copyq.enable = true;
+        hyprpaper.enable = true;
+        hyprlock.enable = true;
     };
 
     gtk = {
