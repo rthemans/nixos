@@ -110,6 +110,10 @@ i18n.extraLocaleSettings = {
 console.useXkbConfig = true;
 
 services.displayManager = {
+    autoLogin = {
+        enable = true;
+        user = "rthemans";
+    };
 # displays the lockscreen through ssdm
     sddm = {
         enable = true;
