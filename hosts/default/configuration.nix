@@ -140,8 +140,6 @@ services.xserver = {
     xkb.layout = "fr";
     xkb.variant = "bepo";
     exportConfiguration = true;
-
-    desktopManager.budgie.enable = true;
 };
 
 # Enable CUPS to print documents.
