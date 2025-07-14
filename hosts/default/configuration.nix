@@ -68,6 +68,7 @@ networking.networkmanager.enable = true;
 fonts = {
 enableDefaultPackages = true;
 packages = with pkgs; [
+font-awesome
 nerd-fonts.roboto-mono
 vistafonts
 jetbrains-mono
@@ -249,7 +250,7 @@ environment.systemPackages = [
 # Productivity
     pkgs.obsidian
     pkgs.keeweb
-    unstable.trilium-next-desktop
+    pkgs.mpd
 
 # Games
 ## Global
