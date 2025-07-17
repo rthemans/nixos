@@ -23,11 +23,11 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
       	inherit system;
-	config.allowUnhree = true;
+	config.allowUnfree = true;
       };
       unstable = import nixunspkgs {
       	inherit system;
-	config.allowUnhree = true;
+	config.allowUnfree = true;
       };
     in
     {
