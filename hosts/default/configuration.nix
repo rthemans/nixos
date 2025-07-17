@@ -84,7 +84,7 @@ monospace = [ "JetBrains Mono Medium" ];
 # Enable network manager applet
 programs.nm-applet.enable = true;
 
-# Enable steam
+# Disable this steam setup to see if I have a way around
 programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -253,10 +253,6 @@ environment.systemPackages = [
     pkgs.mpd
 
 # Games
-## Global
-    pkgs.steam-run
-    pkgs.protonup
-    pkgs.protontricks
 
 ## minecraft launcher
     pkgs.prismlauncher
