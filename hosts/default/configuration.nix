@@ -84,12 +84,6 @@ monospace = [ "JetBrains Mono Medium" ];
 # Enable network manager applet
 programs.nm-applet.enable = true;
 
-# Disable this steam setup to see if I have a way around
-programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-};
-
 # Set your time zone.
 time.timeZone = "Europe/Brussels";
 
@@ -228,7 +222,6 @@ environment.systemPackages = [
     unstable.neovim
 
 # Utility
-    pkgs.flatpak
     pkgs.piper
     pkgs.libratbag
     pkgs.nmon
@@ -304,6 +297,9 @@ system.stateVersion = "23.11"; # Did you read the comment?
 services.gvfs.enable = true;
 services.udisks2.enable = true;
 services.devmon.enable = true;
+
+# flatpak
+services.flatpak.enable = true;
 
 virtualisation.docker.enable = true;
 }
