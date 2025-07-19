@@ -202,6 +202,7 @@ environment.systemPackages = [
 # wayland
     pkgs.hyprpolkitagent
     pkgs.dbus
+    pkgs.nemo
 # Dev
     pkgs.gradle
     pkgs.bat
