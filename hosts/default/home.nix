@@ -30,7 +30,6 @@
 # Let Home Manager install and manage itself.
     programs = {
         mpv.enable = true;
-        mpvpaper.enable = true;
         hyprlock.enable = true;
         tmux.enable = true;
         kitty = {
