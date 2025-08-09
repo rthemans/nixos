@@ -164,7 +164,8 @@
 
     services = {
         copyq.enable = true;
-        hyprpaper.enable = true;
+        #hyprpaper.enable = true;
+        mpvpaper.enable = true;
     };
 
     gtk = {
