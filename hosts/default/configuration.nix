@@ -223,6 +223,7 @@ environment.systemPackages = [
     unstable.neovim
 
 # Utility
+    pkgs.qimgv
     pkgs.calibre
     pkgs.piper
     pkgs.libratbag
