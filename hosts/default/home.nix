@@ -29,6 +29,7 @@
 
 # Let Home Manager install and manage itself.
     programs = {
+        mpvpaper.enable = true;
         hyprlock.enable = true;
         tmux.enable = true;
         kitty = {
@@ -165,7 +166,6 @@
     services = {
         copyq.enable = true;
         #hyprpaper.enable = true;
-        mpvpaper.enable = true;
     };
 
     gtk = {
