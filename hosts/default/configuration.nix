@@ -223,6 +223,7 @@ environment.systemPackages = [
     unstable.neovim
 
 # Utility
+    pkgs.ripgrep
     pkgs.mpvpaper
     pkgs.wlroots_0_19
     pkgs.vlc
@@ -233,11 +234,8 @@ environment.systemPackages = [
     pkgs.nmon
     pkgs.nvtopPackages.nvidia
     pkgs.masterpdfeditor
-    pkgs.wpsoffice
     pkgs.pavucontrol
     pkgs.unzip
-    pkgs.pdf-sign
-    pkgs.open-pdf-sign
     pkgs.eid-mw
     pkgs.hplipWithPlugin
     pkgs.xdotool
