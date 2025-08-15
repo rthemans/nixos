@@ -50,6 +50,12 @@
             "branch_max_length": 25,
             "fetch_status": true,
             "fetch_upstream_icon": true
+          },
+          {
+              "type": "text",
+              "style": "plain",
+              "template": "{{ if .Env.IN_NIX_SHELL }} using   {{ end }}",
+              "foreground": "#ffcc00"
           }
         },
         {
