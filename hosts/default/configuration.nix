@@ -207,7 +207,6 @@ environment.systemPackages = [
     pkgs.gradle
     pkgs.bat
     pkgs.nodejs
-    pkgs.jetbrains-toolbox
     pkgs.maven
     pkgs.jdk21
     pkgs.jdk17
@@ -217,9 +216,7 @@ environment.systemPackages = [
     pkgs.docker
     pkgs.docker-compose
     pkgs.git
-    pkgs.tea
     pkgs.httpie
-    pkgs.httpie-desktop
     unstable.neovim
 
 # Utility
@@ -229,25 +226,16 @@ environment.systemPackages = [
     pkgs.vlc
     pkgs.qimgv
     pkgs.calibre
-    pkgs.piper
-    pkgs.libratbag
     pkgs.nmon
-    pkgs.nvtopPackages.nvidia
     pkgs.masterpdfeditor
     pkgs.pavucontrol
     pkgs.unzip
     pkgs.eid-mw
     pkgs.hplipWithPlugin
-    pkgs.xdotool
     pkgs.solaar
 
 # Chat
     pkgs.discord
-
-# Productivity
-    pkgs.obsidian
-    pkgs.keeweb
-    pkgs.mpd
 
 # Games
 
@@ -255,7 +243,6 @@ environment.systemPackages = [
     pkgs.prismlauncher
 
 # Other
-    pkgs.obs-studio
     pkgs.wget
     pkgs.curl
     pkgs.gvfs
