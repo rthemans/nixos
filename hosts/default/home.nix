@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, inputs, outputs, lib, ... }:
+{ config, pkgs, inputs, outputs, lib, ... }:
 
 {
 
@@ -156,7 +156,6 @@
         waybar.enable = true;
         # utils
         oh-my-posh = {
-            package = unstable.oh-my-posh;
             enable = true;
             enableZshIntegration = true;
             settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile ./resources/diamond.omp.json));

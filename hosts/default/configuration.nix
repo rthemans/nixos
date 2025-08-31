@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, unstable, lib, inputs, outputs, ... }:
+{ config, pkgs, lib, inputs, outputs, ... }:
 
 let
 sddm-astro = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
@@ -217,7 +217,7 @@ environment.systemPackages = [
     pkgs.docker-compose
     pkgs.git
     pkgs.httpie
-    unstable.neovim
+    pkgs.neovim
 
 # Utility
     pkgs.ripgrep
