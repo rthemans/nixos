@@ -11,9 +11,12 @@
         url = "github:rthemans/dotfiles";
         flake = false;
     };
+    walker = {
+        url = "github:abenz1267/walker";
+    };
   };
 
-  outputs = { self, nixpkgs, dotfiles, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -27,8 +30,7 @@
           specialArgs = {inherit inputs;};
           modules = [ 
             ./hosts/default/configuration.nix
-            inputs.home-manager.nixosModules.default {
-	    }
+            home-manager.nixosModules.default
           ];
         };
       server = nixpkgs.lib.nixosSystem {
