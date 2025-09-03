@@ -3,6 +3,9 @@
 {
 
 #  imports = { outputs.homeManagerModules.default }
+    imports = [
+        inputs.walker.homeManagerModules.default
+    ];
 
 # Home Manager needs a bit of information about you and the paths it should
 # manage.
@@ -133,6 +136,22 @@
             };
         };
         # wayland stuff
+        walker = {
+            enable = true;
+            runAsService = true;
+
+# All options from the config.json can be used here.
+            config = {
+                search.placeholder = "Example";
+                ui.fullscreen = true;
+                list = {
+                    height = 200;
+                };
+                websearch.prefix = "?";
+                switcher.prefix = "/";
+            };
+
+        };
         waybar.enable = true;
         # utils
         oh-my-posh = {
