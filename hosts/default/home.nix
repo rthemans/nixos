@@ -133,26 +133,6 @@
             };
         };
         # wayland stuff
-        anyrun = {
-            enable = true;
-            config = {
-                x.fraction = 0.5;
-                y.fraction = 0.3;
-                width.fraction = 0.3;
-                hideIcons = false;
-                ignoreExclusiveZones = false;
-                layer = "top";
-                hidePluginInfo = false;
-                closeOnClick = false;
-                showResultsImmediately = true;
-                maxEntries = null;
-                plugins = [
-                    inputs.anyrun.packages.${pkgs.system}.applications
-                        inputs.anyrun.packages.${pkgs.system}.rink
-                ];
-            };
-            extraConfigFiles."style.css".text = (builtins.readFile ./resources/anyrun/style.css);
-        };
         waybar.enable = true;
         # utils
         oh-my-posh = {
