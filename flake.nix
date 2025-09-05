@@ -22,6 +22,7 @@
         url = "path:modules";
         flake = false;
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, ... }@inputs:
@@ -38,6 +39,14 @@
     in
     {
       nixosConfigurations = {
+      laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [ 
+            ./hosts/default/configuration.nix
+            home-manager.nixosModules.default
+	    nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          ];
+        };
       default = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs unstable-pkgs;};
           modules = [ 
