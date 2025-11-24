@@ -225,14 +225,12 @@ environment.systemPackages = [
     pkgs.wlroots_0_19
     pkgs.vlc
     pkgs.qimgv
-    pkgs.calibre
     pkgs.nmon
     pkgs.masterpdfeditor
     pkgs.pavucontrol
     pkgs.unzip
     pkgs.eid-mw
     pkgs.hplipWithPlugin
-    pkgs.solaar
 
 # Chat
     pkgs.discord
