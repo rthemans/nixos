@@ -19,7 +19,14 @@
 
 # dotfiles management
         file = {
-            ".config/" = { source = inputs.dotfiles; recursive = true; };
+            ".config/" = {
+                source = inputs.dotfiles;
+                recursive = true;
+                };
+            ".config/hypr" = {
+                source = ./resources/hypr;
+                recursive = true;
+                };
         };
 
         sessionVariables = {
@@ -27,7 +34,9 @@
         };
     };
 
-    wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland = {
+        enable = true;
+    };
 
 
 # Let Home Manager install and manage itself.
