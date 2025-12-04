@@ -105,6 +105,10 @@
 
             sessionVariables = {
                 STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/DataDrive/proton/compatibilitytools.d";
+                __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+                __NV_PRIME_RENDER_OFFLOAD = "1";
+                __VK_LAYER_NV_optimus = "NVIDIA_only";
+                XDG_SESSION_TYPE = "wayland;
             };
 
             shellAliases = {
