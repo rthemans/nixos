@@ -108,7 +108,7 @@
                 __GLX_VENDOR_LIBRARY_NAME = "nvidia";
                 __NV_PRIME_RENDER_OFFLOAD = "1";
                 __VK_LAYER_NV_optimus = "NVIDIA_only";
-                XDG_SESSION_TYPE = "wayland;
+                XDG_SESSION_TYPE = "wayland";
             };
 
             shellAliases = {
