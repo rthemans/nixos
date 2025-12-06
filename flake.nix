@@ -42,7 +42,7 @@
       laptop = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
-            ./hosts/default/configuration.nix
+            ./hosts/laptop/configuration.nix
 	    nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ];
         };
