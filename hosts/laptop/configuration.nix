@@ -2,274 +2,132 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, outputs, ... }:
+{ config, pkgs, ... }:
 
-let
-sddm-astro = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
-in
 {
-imports =
-[ # Include the results of the hardware scan.
-./hardware-configuration.nix
-inputs.home-manager.nixosModules.default
-];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
-boot.loader.grub = {
-enable = true;
-gfxmodeEfi = "1920x1080";
-gfxmodeBios = "1920x1080";
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-device = "/dev/sdb";
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-# useOSProber = true;
-# extraEntriesBeforeNixOS = true;
-};
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-networking.hostName = "laptop"; # Define your hostname.
-#networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Set your time zone.
+  time.timeZone = "Europe/Brussels";
 
-nix.settings = {
-experimental-features = [ "nix-command" "flakes" ];
-auto-optimise-store = true;
-trusted-users = [ "root" "rthemans" ];
-substituters = ["https://hyprland.cachix.org"];
-trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-};
+  # Select internationalisation properties.
+  i18n.defaultLocale = "fr_BE.UTF-8";
 
-nix.optimise = {
-automatic = true;
-dates = [ "21:00" ];
-};
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
-nix.gc = {
-automatic = true;
-dates = "weekly";
-options = "--delete-older-than 15d";
-};
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
-# Enable networking
-networking.networkmanager.enable = true;
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "fr";
+    variant = "bepo";
+  };
 
-# fonts
-fonts = {
-enableDefaultPackages = true;
-packages = with pkgs; [
-font-awesome
-nerd-fonts.roboto-mono
-vistafonts
-jetbrains-mono
-];
+  # Configure console keymap
+  console.keyMap = "fr";
 
-fontconfig = {
-defaultFonts = {
-monospace = [ "JetBrains Mono Medium" ];
-};
-};
-};
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
-# Enable network manager applet
-programs.nm-applet.enable = true;
-
-# Set your time zone.
-time.timeZone = "Europe/Brussels";
-
-# Select internationalisation properties.
-i18n.defaultLocale = "en_US.UTF-8";
-
-i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_BE.UTF-8";
-    LC_IDENTIFICATION = "fr_BE.UTF-8";
-    LC_MEASUREMENT = "fr_BE.UTF-8";
-    LC_MONETARY = "fr_BE.UTF-8";
-    LC_NAME = "fr_BE.UTF-8";
-    LC_NUMERIC = "fr_BE.UTF-8";
-    LC_PAPER = "fr_BE.UTF-8";
-    LC_TELEPHONE = "fr_BE.UTF-8";
-    LC_TIME = "fr_BE.UTF-8";
-};
-
-console.useXkbConfig = true;
-
-services.displayManager = {
-    autoLogin = {
-        enable = true;
-        user = "rthemans";
-    };
-# displays the lockscreen through ssdm
-    sddm = {
-        enable = true;
-        autoNumlock = false;
-        wayland.enable = true;
-        theme = "sddm-astronaut-theme";
-        package = pkgs.kdePackages.sddm;
-        extraPackages = [
-        sddm-astro
-        ];
-    };
-};
-
-programs.hyprland.enable = true;
-
-services.xserver = {
-# Enable the X11 windowing system.
-    enable = true;
-
-# Nvidia driver
-#    videoDrivers = ["nouveau"];
-
-# Configure keymap in X11    
-    xkb.layout = "fr";
-    xkb.variant = "bepo";
-    exportConfiguration = true;
-};
-
-# Enable CUPS to print documents.
-services.printing.enable = true;
-
-# Enable sound with pipewire.
-security.rtkit.enable = true;
-
-services.pipewire = {
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-};
-systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
 
-# bluetooth cli
-services.blueman.enable = true;
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
 
-# enable zsh at system level
-programs.zsh.enable = true;
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
-# Define a user account. Don't forget to set a password with ‘passwd’.
-users.mutableUsers = false;
-users.users.rthemans = {
-    hashedPassword = "$y$j9T$zQYPCbLq8..vy/I3DUCTT0$LD9Z4byg1OC/EG40TfdAu.tLEqiogZPG7iJw7wLwGXC";
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.rthemans = {
     isNormalUser = true;
     description = "rthemans";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-        firefox
-#  thunderbird
+    #  thunderbird
+      neovim
+      git
+      kitty
+      ripgrep
     ];
-    shell = pkgs.zsh;
-};
+  };
 
-home-manager = {
-# also pass inputs to home-manager modules
-    extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "hmbackup";
-    users = {
-        "rthemans" = import ./home.nix;
-    };
-};
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "rthemans";
 
-# Allow unfree packages
-nixpkgs.config.allowUnfree = true;
-#nixpkgs.config.cudaSupport = true;
-# setup for jdks
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
-# List packages installed in system profile. To search, run:
-# $ nix search wget
-environment.systemPackages = [
-# theme
-    pkgs.sleek-grub-theme
-    sddm-astro
-# wayland
-    pkgs.hyprpolkitagent
-    pkgs.dbus
-    pkgs.nemo
-# Dev
-    pkgs.gradle
-    pkgs.bat
-    pkgs.nodejs
-    pkgs.maven
-    pkgs.jdk21
-    pkgs.jdk17
-    pkgs.jdk11
-    pkgs.jdk8
-    pkgs.godot_4
-    pkgs.docker
-    pkgs.docker-compose
-    pkgs.git
-    pkgs.httpie
-    pkgs.neovim
+  # Install firefox.
+  programs.firefox.enable = true;
 
-# Utility
-    pkgs.ripgrep
-    pkgs.mpvpaper
-    pkgs.wlroots_0_19
-    pkgs.vlc
-    pkgs.qimgv
-    pkgs.calibre
-    pkgs.nmon
-    pkgs.masterpdfeditor
-    pkgs.pavucontrol
-    pkgs.unzip
-    pkgs.eid-mw
-    pkgs.hplipWithPlugin
-    pkgs.solaar
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
-# Chat
-    pkgs.discord
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+  ];
 
-# Games
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-## minecraft launcher
-    pkgs.prismlauncher
+  # List services that you want to enable:
 
-# Other
-    pkgs.wget
-    pkgs.curl
-    pkgs.gvfs
-    pkgs.udisks
-    pkgs.shutter
-    pkgs.openssl
-    pkgs.unetbootin
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
 
-# Machine Learning
-    pkgs.cachix
-    ];
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
-# Some programs need SUID wrappers, can be configured further or are
-# started in user sessions.
-# programs.mtr.enable = true;
-# programs.gnupg.agent = {
-#   enable = true;
-#   enableSSHSupport = true;
-# };
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
 
-# List services that you want to enable:
-
-# Enable the OpenSSH daemon.
-    services.openssh = {
-        enable = true;
-    };
-
-# Open ports in the firewall.
-#networking.firewall.allowedTCPPorts = [ 22 ];
-# networking.firewall.allowedUDPPorts = [ ... ];
-# Or disable the firewall altogether.
-# networking.firewall.enable = false;
-
-# This value determines the NixOS release from which the default
-# settings for stateful data, like file locations and database versions
-# on your system were taken. It‘s perfectly fine and recommended to leave
-# this value at the release version of the first install of this system.
-# Before changing this value read the documentation for this option
-# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-system.stateVersion = "25.05"; # Did you read the comment?
-
-# enable usb
-services.gvfs.enable = true;
-services.udisks2.enable = true;
-services.devmon.enable = true;
-
-# flatpak
-services.flatpak.enable = true;
-
-virtualisation.docker.enable = true;
 }

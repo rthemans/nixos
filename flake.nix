@@ -43,7 +43,6 @@
           specialArgs = {inherit inputs;};
           modules = [ 
             ./hosts/default/configuration.nix
-            home-manager.nixosModules.default
 	    nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ];
         };
