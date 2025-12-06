@@ -10,13 +10,11 @@ jdkEnv = pkgs.runCommand "jdk-env" {
     buildInputs = with pkgs; [
         pkgs.openjdk17
         pkgs.openjdk21
-        pkgs.openjdk23
     ];
 } ''
 mkdir -p $out/jdks
 ln -s ${pkgs.openjdk17}/lib/openjdk   $out/jdks/openjdk17
 ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
-ln -s ${pkgs.openjdk23}/lib/openjdk   $out/jdks/openjdk23
 '';
 in
 {
@@ -70,7 +68,7 @@ enableDefaultPackages = true;
 packages = with pkgs; [
 font-awesome
 nerd-fonts.roboto-mono
-vistafonts
+vista-fonts
 jetbrains-mono
 ];
 
@@ -181,7 +179,7 @@ home-manager = {
 
 # Allow unfree packages
 nixpkgs.config.allowUnfree = true;
-nixpkgs.config.cudaSupport = true;
+nixpkgs.config.cudaSupport = false;
 # setup for jdks
 environment.pathsToLink = [ "/jdks" ];
 system.activationScripts.jdkSymlinks.text = ''
