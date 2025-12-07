@@ -67,7 +67,7 @@
             };
 
             shellAliases = {
-                rebuild = "sudo nixos-rebuild switch --flake ~/nixos#default";
+                rebuild = "sudo nixos-rebuild switch --flake ~/nixos#laptop";
                 rb = "rebuild";
                 full-rebuild = "nix flake update && rebuild";
                 frb = "full-rebuild";

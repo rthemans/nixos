@@ -11,13 +11,12 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
 boot.loader.grub = {
 enable = true;
-
-device = "/dev/sda";
+efiSupport = true;
+device = "nodev";
 
 theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
 
@@ -93,6 +92,7 @@ theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withS
     hashedPassword = "$y$j9T$zQYPCbLq8..vy/I3DUCTT0$LD9Z4byg1OC/EG40TfdAu.tLEqiogZPG7iJw7wLwGXC";
     shell = pkgs.zsh;
   };
+programs.zsh.enable = true;
 home-manager = {
 # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
