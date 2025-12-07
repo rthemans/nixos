@@ -199,6 +199,7 @@ environment.systemPackages = [
     jdkEnv
 # steam
     pkgs.lsb-release
+    pkgs.nvidia-vaapi-driver
 # theme
     pkgs.sleek-grub-theme
     sddm-astro
