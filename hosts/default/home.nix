@@ -89,12 +89,6 @@
         };
         git = {
             enable = true;
-            settings = {
-                user = {
-                    name = "rthemans";
-                    email = "raph.the@gmail.com";
-                };
-
                 aliases = {
                     cm = "commit -a -m";
                     st = "status -sb";
@@ -103,6 +97,12 @@
                     d = "diff";
                     gl = "config --global -l";
                 };
+            settings = {
+                user = {
+                    name = "rthemans";
+                    email = "raph.the@gmail.com";
+                };
+
                 core = {
                     editor = "emacs";
                 };
@@ -146,4 +146,12 @@
             enable = true;
         };
     };
+
+    gtk = {
+            iconTheme = {
+            name = "WhiteSur";
+            package = pkgs.whitesur-icon-theme;
+        };
+    };
+
 }
