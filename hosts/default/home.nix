@@ -122,7 +122,6 @@
             enable = true;
                 userName = "rthemans";
                 userEmail = "raph.the@gmail.com";
-            settings = {
 
                 aliases = {
                     cm = "commit -a -m";
@@ -131,7 +130,6 @@
                     rv = "remote -v";
                     d = "diff";
                     gl = "config --global -l";
-                };
             };
 
             extraConfig = {
