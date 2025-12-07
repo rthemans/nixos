@@ -120,7 +120,9 @@ services.displayManager = {
     };
 };
 
-programs.hyprland.enable = true;
+programs.hyprland = {
+    enable = true;
+};
 
 services.xserver = {
 # Enable the X11 windowing system.
@@ -179,6 +181,7 @@ home-manager = {
 
 # Allow unfree packages
 nixpkgs.config.allowUnfree = true;
+nixpkgs.config.nvidia.acceptLicense = true;
 nixpkgs.config.cudaSupport = false;
 # setup for jdks
 environment.pathsToLink = [ "/jdks" ];
@@ -194,6 +197,8 @@ ln -sfT /run/current-system/sw/jdks /opt/java
 environment.systemPackages = [
 # variable
     jdkEnv
+# steam
+    pkgs.lsb-release
 # theme
     pkgs.sleek-grub-theme
     sddm-astro
