@@ -165,6 +165,7 @@ users.users.rthemans = {
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" "render" "video" ];
     packages = with pkgs; [
         firefox
+        libnotify
 #  thunderbird
     ];
     shell = pkgs.zsh;

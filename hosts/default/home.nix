@@ -89,8 +89,11 @@
         };
         git = {
             enable = true;
-                userName = "rthemans";
-                userEmail = "raph.the@gmail.com";
+            settings = {
+                user = {
+                    name = "rthemans";
+                    email = "raph.the@gmail.com";
+                };
 
                 aliases = {
                     cm = "commit -a -m";
@@ -99,9 +102,7 @@
                     rv = "remote -v";
                     d = "diff";
                     gl = "config --global -l";
-            };
-
-            extraConfig = {
+                };
                 core = {
                     editor = "emacs";
                 };
@@ -141,26 +142,8 @@
 
     services = {
         copyq.enable = true;
-        #hyprpaper.enable = true;
-    };
-
-    gtk = {
-        enable = true;
-
-        theme = lib.mkForce {
-            package = pkgs.whitesur-gtk-theme;
-            name = "WhiteSur-Light";
-        };
-
-        cursorTheme = {
-            package = pkgs.whitesur-cursors;
-            name = "WhiteSur-cursors";
-        };
-
-        iconTheme = {
-            name = "WhiteSur";
-            package = pkgs.whitesur-icon-theme;
-
+        swaync = {
+            enable = true;
         };
     };
 }
