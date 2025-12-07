@@ -44,6 +44,7 @@
           modules = [ 
             ./hosts/laptop/configuration.nix
 	    nixos-hardware.nixosModules.lenovo-thinkpad-t480
+            home-manager.nixosModules.default
           ];
         };
       default = nixpkgs.lib.nixosSystem {

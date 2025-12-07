@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
@@ -14,6 +14,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+boot.loader.grub = {
+enable = true;
+
+device = "/dev/sda";
+
+theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
+
+# useOSProber = true;
+# extraEntriesBeforeNixOS = true;
+};
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -72,7 +82,7 @@
   users.users.rthemans = {
     isNormalUser = true;
     description = "rthemans";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" ];
     packages = with pkgs; [
     #  thunderbird
       neovim
@@ -80,7 +90,17 @@
       kitty
       ripgrep
     ];
+    hashedPassword = "$y$j9T$zQYPCbLq8..vy/I3DUCTT0$LD9Z4byg1OC/EG40TfdAu.tLEqiogZPG7iJw7wLwGXC";
+    shell = pkgs.zsh;
   };
+home-manager = {
+# also pass inputs to home-manager modules
+    extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "hmbackup";
+    users = {
+        "rthemans" = import ./home.nix;
+    };
+};
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
