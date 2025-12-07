@@ -105,10 +105,6 @@
 
             sessionVariables = {
                 STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/DataDrive/proton/compatibilitytools.d";
-                __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-                __NV_PRIME_RENDER_OFFLOAD = "1";
-                __VK_LAYER_NV_optimus = "NVIDIA_only";
-                XDG_SESSION_TYPE = "wayland";
             };
 
             shellAliases = {
@@ -124,16 +120,18 @@
         };
         git = {
             enable = true;
-            userName = "rthemans";
-            userEmail = "raph.the@gmail.com";
+                userName = "rthemans";
+                userEmail = "raph.the@gmail.com";
+            settings = {
 
-            aliases = {
-                cm = "commit -a -m";
-                st = "status -sb";
-                ll = "log --oneline";
-                rv = "remote -v";
-                d = "diff";
-                gl = "config --global -l";
+                aliases = {
+                    cm = "commit -a -m";
+                    st = "status -sb";
+                    ll = "log --oneline";
+                    rv = "remote -v";
+                    d = "diff";
+                    gl = "config --global -l";
+                };
             };
 
             extraConfig = {
@@ -197,18 +195,5 @@
             package = pkgs.whitesur-icon-theme;
 
         };
-    };
-
-# dconf settings
-    dconf.settings = {
-        "org/buddiesofbudgie/budgie-desktop-view" = {
-            show = false;
-        };
-
-        "com/solus-project/budgie-wm" = {
-            button-style = "left";
-            button-layout = "close,minimize,maximize:appmenu";
-        };
-
     };
 }
