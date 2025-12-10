@@ -148,7 +148,8 @@
     };
 
     gtk = {
-            iconTheme = {
+        enable = true;
+        iconTheme = {
             name = "WhiteSur";
             package = pkgs.whitesur-icon-theme;
         };
