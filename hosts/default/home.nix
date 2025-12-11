@@ -36,6 +36,12 @@
 
     wayland.windowManager.hyprland = {
         enable = true;
+        extraConfig = ''
+            source = setup.conf
+            source = settings.conf
+            source = nvim-binds.conf
+            source = rules.conf
+        '';
     };
 
 
