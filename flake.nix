@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     dotfiles = {
         url = "github:rthemans/dotfiles";
@@ -24,11 +24,15 @@
       	inherit system;
         config.allowUnfree = true;
       };
+      unstable-pkgs = import unstable {
+      	inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
       nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = {inherit inputs unstable-pkgs;};
           modules = [ 
             ./hosts/default/configuration.nix
             home-manager.nixosModules.default

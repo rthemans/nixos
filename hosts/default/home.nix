@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, outputs, lib, ... }:
+{ config, pkgs, unstable-pkgs, inputs, outputs, lib, ... }:
 
 {
 
@@ -36,6 +36,7 @@
 
     wayland.windowManager.hyprland = {
         enable = true;
+        package = unstable-pkgs.hyprland;
         extraConfig = ''
             source = setup.conf
             source = settings.conf
