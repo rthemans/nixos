@@ -5,6 +5,7 @@
 #  imports = { outputs.homeManagerModules.default }
     imports = [
         inputs.walker.homeManagerModules.default
+        inputs.hyprland.homeManagerModules.default
     ];
 
 # Home Manager needs a bit of information about you and the paths it should
@@ -36,7 +37,6 @@
 
     wayland.windowManager.hyprland = {
         enable = true;
-        package = unstable-pkgs.hyprland;
         extraConfig = ''
             source = setup.conf
             source = settings.conf

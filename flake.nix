@@ -15,6 +15,9 @@
     walker = {
         url = "github:abenz1267/walker";
     };
+    hyprland = {
+        url = "github:hyprwm/Hyprland?tag=0.52.2";
+    };
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, ... }@inputs:
