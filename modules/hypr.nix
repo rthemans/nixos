@@ -1,0 +1,50 @@
+{ config, inputs, pkgs, ...} : {
+
+    imports = [
+        inputs.walker.homeManagerModules.default
+        inputs.hyprland.homeManagerModules.default
+    ];
+
+    home.file = {
+        ".config/hypr" = {
+            source = ../resources/hypr;
+            recursive = true;
+        };
+    };
+    wayland.windowManager.hyprland = {
+        enable = true;
+        extraConfig = ''
+            source = setup.conf
+            source = settings.conf
+            source = nvim-binds.conf
+            source = rules.conf
+        '';
+    };
+
+    programs = {
+        mpv.enable = true;
+        hyprlock.enable = true;
+        walker = {
+            enable = true;
+            runAsService = true;
+
+            config = {
+                search.placeholder = "Example";
+                ui.fullscreen = true;
+                list = {
+                    height = 200;
+                };
+                websearch.prefix = "?";
+                switcher.prefix = "/";
+            };
+
+        };
+        waybar.enable = true;
+    };
+
+    services = {
+        swaync = {
+            enable = true;
+        };
+    };
+}

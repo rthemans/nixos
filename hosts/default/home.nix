@@ -4,8 +4,7 @@
 
 #  imports = { outputs.homeManagerModules.default }
     imports = [
-        inputs.walker.homeManagerModules.default
-        inputs.hyprland.homeManagerModules.default
+    (import ../../modules/hypr.nix {inherit config inputs pkgs;})
     ];
 
 # Home Manager needs a bit of information about you and the paths it should
@@ -24,10 +23,6 @@
                 source = inputs.dotfiles;
                 recursive = true;
                 };
-            ".config/hypr" = {
-                source = ./resources/hypr;
-                recursive = true;
-                };
         };
 
         sessionVariables = {
@@ -35,21 +30,10 @@
         };
     };
 
-    wayland.windowManager.hyprland = {
-        enable = true;
-        extraConfig = ''
-            source = setup.conf
-            source = settings.conf
-            source = nvim-binds.conf
-            source = rules.conf
-        '';
-    };
 
 
 # Let Home Manager install and manage itself.
     programs = {
-        mpv.enable = true;
-        hyprlock.enable = true;
         tmux.enable = true;
         kitty = {
             enable = true;
@@ -121,24 +105,6 @@
                 };
             };
         };
-        # wayland stuff
-        walker = {
-            enable = true;
-            runAsService = true;
-
-# All options from the config.json can be used here.
-            config = {
-                search.placeholder = "Example";
-                ui.fullscreen = true;
-                list = {
-                    height = 200;
-                };
-                websearch.prefix = "?";
-                switcher.prefix = "/";
-            };
-
-        };
-        waybar.enable = true;
         # utils
         oh-my-posh = {
             enable = true;
@@ -149,9 +115,6 @@
 
     services = {
         copyq.enable = true;
-        swaync = {
-            enable = true;
-        };
     };
 
     gtk = {
