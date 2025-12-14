@@ -10,6 +10,10 @@
             source = ../resources/hypr;
             recursive = true;
         };
+        ".config/waybar" = {
+            source = ../resources/waybar;
+            recursive = true;
+        };
     };
 
     home.packages = [
