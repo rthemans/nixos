@@ -11,6 +11,10 @@
             recursive = true;
         };
     };
+
+    home.packages = [
+        pkgs.hyprshot
+    ];
     wayland.windowManager.hyprland = {
         enable = true;
         extraConfig = ''
