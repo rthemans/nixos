@@ -31,6 +31,15 @@
     };
 
 
+    wayland.windowManager.hyprland.extraConfig = ''
+        # Moniteurs
+        monitor = desc:AOC, 1920x1080@239.96, 0x0, 1
+        monitor = desc:BNQ, 1920x1080@60.00, 1920x0, 1
+        workspace = 1, monitor:desc:AOC
+        exec-once = hyprctl dispatch workspace 1
+
+        exec-once = mpvpaper -n 20 -o "--geometry=1920x1060 --shuffle --no-audio" ALL /DataDrive/liveWallpaper/
+    '';
 
 # Let Home Manager install and manage itself.
     programs = {

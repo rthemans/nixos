@@ -17,10 +17,11 @@
     ];
     wayland.windowManager.hyprland = {
         enable = true;
+        xwayland.enable = true;
         extraConfig = ''
-            source = setup.conf
+            source = start.conf
             source = settings.conf
-            source = nvim-binds.conf
+            source = binds.conf
             source = rules.conf
         '';
     };
