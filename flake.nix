@@ -16,7 +16,11 @@
         url = "github:abenz1267/walker";
     };
     hyprland = {
-        url = "github:hyprwm/Hyprland?tag=0.52.2";
+        url = "github:hyprwm/Hyprland";
+    };
+    modules = {
+        url = "path:modules";
+        flake = false;
     };
   };
 
