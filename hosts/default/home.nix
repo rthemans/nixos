@@ -4,7 +4,8 @@
 
 #  imports = { outputs.homeManagerModules.default }
     imports = [
-    (import ../../modules/hypr.nix {inherit config inputs pkgs;})
+    #(import ../../modules/hypr.nix {inherit config inputs pkgs;})
+    (import inputs.modules {inherit config inputs pkgs;})
     ];
 
 # Home Manager needs a bit of information about you and the paths it should
