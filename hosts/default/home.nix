@@ -2,9 +2,7 @@
 
 {
 
-#  imports = { outputs.homeManagerModules.default }
     imports = [
-    #(import ../../modules/hypr.nix {inherit config inputs pkgs;})
     (import inputs.modules {inherit config inputs pkgs;})
     ];
 
@@ -16,12 +14,13 @@
             username = "rthemans";
         homeDirectory = "/home/rthemans";
         packages = [
+            pkgs.gimp
         ];
 
 # dotfiles management
         file = {
-            ".config/" = {
-                source = inputs.dotfiles;
+            ".config/tmux" = {
+                source = inputs.dotfiles.outPath + "/tmux";
                 recursive = true;
                 };
         };
