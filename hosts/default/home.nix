@@ -15,6 +15,7 @@
         homeDirectory = "/home/rthemans";
         packages = [
             pkgs.gimp
+            pkgs.networkmanagerapplet
         ];
 
 # dotfiles management
