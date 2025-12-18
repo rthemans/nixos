@@ -16,6 +16,7 @@
         packages = [
             pkgs.gimp
             pkgs.networkmanagerapplet
+            pkgs.networkmanager
         ];
 
 # dotfiles management
