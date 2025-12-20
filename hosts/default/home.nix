@@ -17,6 +17,7 @@
             pkgs.gimp
             pkgs.networkmanagerapplet
             pkgs.networkmanager
+            pkgs.hplip
         ];
 
 # dotfiles management
