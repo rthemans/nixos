@@ -18,6 +18,7 @@
             pkgs.networkmanagerapplet
             pkgs.networkmanager
             pkgs.hplip
+            pkgs.librewolf-unwrapped
         ];
 
 # dotfiles management
