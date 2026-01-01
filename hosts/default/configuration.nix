@@ -63,17 +63,21 @@ in
     fonts = {
         enableDefaultPackages = true;
         packages = with pkgs; [
-            nerd-fonts.roboto-mono
+            roboto
+                open-fonts
+                open-sans
+                nerd-fonts.roboto-mono
                 nerd-fonts.caskaydia-mono
                 nerd-fonts.symbols-only
                 nerd-fonts.fira-code
                 nerd-fonts.monofur
+                inter-nerdfont
         ];
 
         fontconfig = {
             defaultFonts = {
                 monospace = [ "RobotoMono Nerd Font Mono" ];
-                emoji = [ "Symols Only Nerd Font" ];
+                emoji = [ "Symols Nerd Font" ];
             };
         };
     };
