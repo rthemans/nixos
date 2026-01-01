@@ -18,66 +18,65 @@ ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
 '';
 in
 {
-imports =
-[ # Include the results of the hardware scan.
-./hardware-configuration.nix
-inputs.home-manager.nixosModules.default
-];
+    imports =
+        [ # Include the results of the hardware scan.
+        ./hardware-configuration.nix
+            inputs.home-manager.nixosModules.default
+        ];
 
-boot.loader.grub = {
-enable = true;
-gfxmodeEfi = "1920x1080";
-gfxmodeBios = "1920x1080";
+    boot.loader.grub = {
+        enable = true;
+        gfxmodeEfi = "1920x1080";
+        gfxmodeBios = "1920x1080";
 
-device = "/dev/sdb";
+        device = "/dev/sdb";
 
-theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
+        theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
+    };
 
-# useOSProber = true;
-# extraEntriesBeforeNixOS = true;
-};
+    networking.hostName = "default"; # Define your hostname.
+    #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-networking.hostName = "default"; # Define your hostname.
-#networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+        nix.settings = {
+            experimental-features = [ "nix-command" "flakes" ];
+            auto-optimise-store = true;
+            trusted-users = [ "root" "rthemans" ];
+            substituters = ["https://hyprland.cachix.org"];
+            trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+        };
 
-nix.settings = {
-experimental-features = [ "nix-command" "flakes" ];
-auto-optimise-store = true;
-trusted-users = [ "root" "rthemans" ];
-substituters = ["https://hyprland.cachix.org"];
-trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-};
+    nix.optimise = {
+        automatic = true;
+        dates = [ "21:00" ];
+    };
 
-nix.optimise = {
-automatic = true;
-dates = [ "21:00" ];
-};
-
-nix.gc = {
-automatic = true;
-dates = "weekly";
-options = "--delete-older-than 15d";
-};
+    nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 15d";
+    };
 
 # Enable networking
-networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
 
 # fonts
-fonts = {
-enableDefaultPackages = true;
-packages = with pkgs; [
-font-awesome
-nerd-fonts.roboto-mono
-vista-fonts
-jetbrains-mono
-];
+    fonts = {
+        enableDefaultPackages = true;
+        packages = with pkgs; [
+            nerd-fonts.roboto-mono
+                nerd-fonts.caskaydia-mono
+                nerd-fonts.symbols-only
+                nerd-fonts.fira-code
+                nerd-fonts.monofur
+        ];
 
-fontconfig = {
-defaultFonts = {
-monospace = [ "JetBrains Mono Medium" ];
-};
-};
-};
+        fontconfig = {
+            defaultFonts = {
+                monospace = [ "RobotoMono Nerd Font Mono" ];
+                emoji = [ "Symols Only Nerd Font" ];
+            };
+        };
+    };
 
 # Enable network manager applet
 programs.nm-applet.enable = true;
