@@ -19,6 +19,8 @@
             pkgs.networkmanager
             pkgs.hplip
             pkgs.librewolf-unwrapped
+            pkgs.sioyek
+            pkgs.anki
         ];
 
 # dotfiles management
