@@ -21,6 +21,8 @@
             pkgs.librewolf-unwrapped
             pkgs.sioyek
             pkgs.anki
+            pkgs.mangohud
+            pkgs.gamemode
         ];
 
 # dotfiles management

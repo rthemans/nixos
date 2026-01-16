@@ -22,6 +22,10 @@
         url = "path:modules";
         flake = false;
     };
+    caelestia-shell = {
+        url = "github:caelestia-dots/shell";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, ... }@inputs:

@@ -18,6 +18,8 @@
 
     home.packages = [
         pkgs.hyprshot
+        pkgs.quickshell
+        inputs.caelestia-shell.packages.x86_64-linux.default
     ];
     wayland.windowManager.hyprland = {
         enable = true;
