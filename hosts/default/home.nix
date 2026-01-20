@@ -24,6 +24,7 @@
             pkgs.mangohud
             pkgs.gamemode
             pkgs.kdePackages.kdenlive
+            pkgs.pastel
         ];
 
 # dotfiles management
