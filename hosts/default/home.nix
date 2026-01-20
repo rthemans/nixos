@@ -23,6 +23,7 @@
             pkgs.anki
             pkgs.mangohud
             pkgs.gamemode
+            pkgs.kdePackages.kdenlive
         ];
 
 # dotfiles management
