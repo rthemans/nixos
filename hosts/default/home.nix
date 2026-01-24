@@ -25,6 +25,7 @@
             pkgs.gamemode
             pkgs.kdePackages.kdenlive
             pkgs.pastel
+            unstable-pkgs.aseprite
         ];
 
 # dotfiles management
