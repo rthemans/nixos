@@ -204,46 +204,6 @@ environment.systemPackages = [
 # theme
     pkgs.sleek-grub-theme
     sddm-astro
-# wayland
-    pkgs.hyprpolkitagent
-    pkgs.dbus
-    pkgs.nemo
-# Dev
-    pkgs.gradle
-    pkgs.bat
-    pkgs.nodejs
-    pkgs.maven
-    pkgs.jdk21
-    pkgs.jdk17
-    pkgs.jdk11
-    pkgs.jdk8
-    pkgs.godot_4
-    pkgs.docker
-    pkgs.docker-compose
-    pkgs.git
-    pkgs.httpie
-    pkgs.neovim
-
-# Utility
-    pkgs.ripgrep
-    pkgs.mpvpaper
-    pkgs.wlroots_0_19
-    pkgs.vlc
-    pkgs.qimgv
-    pkgs.nmon
-    pkgs.masterpdfeditor
-    pkgs.pavucontrol
-    pkgs.unzip
-    pkgs.eid-mw
-    pkgs.hplipWithPlugin
-
-# Chat
-    pkgs.discord
-
-# Games
-
-## minecraft launcher
-    pkgs.prismlauncher
 
 # Other
     pkgs.wget
@@ -253,6 +213,7 @@ environment.systemPackages = [
     pkgs.shutter
     pkgs.openssl
     pkgs.unetbootin
+    pkgs.pulseaudio
 
 # Machine Learning
     pkgs.cachix

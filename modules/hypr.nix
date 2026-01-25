@@ -19,6 +19,9 @@
     home.packages = [
         pkgs.hyprshot
         pkgs.quickshell
+        pkgs.hyprpolkitagent
+        pkgs.dbus
+        pkgs.nemo
     ];
     wayland.windowManager.hyprland = {
         enable = true;
