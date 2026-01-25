@@ -201,6 +201,10 @@ ln -sfT /run/current-system/sw/jdks /opt/java
 environment.systemPackages = [
 # variable
     jdkEnv
+    pkgs.jdk21
+    pkgs.jdk17
+    pkgs.jdk11
+    pkgs.jdk8
 # theme
     pkgs.sleek-grub-theme
     sddm-astro
@@ -214,6 +218,7 @@ environment.systemPackages = [
     pkgs.openssl
     pkgs.unetbootin
     pkgs.pulseaudio
+    pkgs.hplipWithPlugin
 
 # Machine Learning
     pkgs.cachix

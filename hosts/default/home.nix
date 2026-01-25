@@ -17,7 +17,6 @@
             pkgs.gimp
             pkgs.networkmanagerapplet
             pkgs.networkmanager
-            pkgs.hplip
             pkgs.librewolf-unwrapped
             pkgs.sioyek
             pkgs.anki
@@ -32,10 +31,6 @@
             pkgs.bat
             pkgs.nodejs
             pkgs.maven
-            pkgs.jdk21
-            pkgs.jdk17
-            pkgs.jdk11
-            pkgs.jdk8
             pkgs.godot_4
             pkgs.docker
             pkgs.docker-compose
@@ -50,14 +45,12 @@
             pkgs.vlc
             pkgs.qimgv
             pkgs.nmon
-            pkgs.masterpdfeditor
             pkgs.pavucontrol
             pkgs.unzip
             pkgs.eid-mw
-            pkgs.hplipWithPlugin
 
 # Chat
-            pkgs.discord
+            unstable-pkgs.discord
 # Games
 ## minecraft launcher
             pkgs.prismlauncher
