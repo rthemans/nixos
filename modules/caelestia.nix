@@ -25,9 +25,6 @@
                         timeouts = [ ];
                     };
                 };
-                background = {
-                    enable = false;
-                };
                 visualiser = {
                     enable = false;
                 };
