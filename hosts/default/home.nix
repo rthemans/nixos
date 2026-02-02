@@ -87,6 +87,7 @@
             enable = true;
             extraConfig = ''
                 background_opacity 0.9
+                term xterm-256color
                 '';
             shellIntegration.enableZshIntegration = true;
             themeFile = "Arthur";
