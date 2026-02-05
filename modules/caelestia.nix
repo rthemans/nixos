@@ -26,7 +26,10 @@
                     };
                 };
                 background = {
-                    enable = false;
+                    enabled = false;
+                    desktopClock = {
+                        enabled = false;
+                    };
                 };
                 visualiser = {
                     enable = false;
