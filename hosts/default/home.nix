@@ -152,6 +152,9 @@
                 pull = {
                     rebase = true;
                 };
+                safe = {
+                    directory = "*";
+                };
             };
         };
         # utils
