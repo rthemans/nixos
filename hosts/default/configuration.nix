@@ -84,6 +84,7 @@ in
 
 # Enable network manager applet
 programs.nm-applet.enable = true;
+programs.ssh.startAgent = true;
 
 # Set your time zone.
 time.timeZone = "Europe/Brussels";
