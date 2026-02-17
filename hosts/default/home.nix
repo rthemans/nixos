@@ -18,6 +18,7 @@
             pkgs.networkmanagerapplet
             pkgs.networkmanager
             pkgs.librewolf-unwrapped
+            unstable-pkgs.qutebrowser
             pkgs.sioyek
             pkgs.anki
             pkgs.mangohud
