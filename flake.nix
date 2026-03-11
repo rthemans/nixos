@@ -38,6 +38,9 @@
       unstable-pkgs = import unstable {
       	inherit system;
         config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+            "libsoup-2.74.3"
+        ];
       };
     in
     {
