@@ -14,6 +14,7 @@
             username = "rthemans";
         homeDirectory = "/home/rthemans";
         packages = [
+            unstable-pkgs.citrix_workspace
             pkgs.gimp
             pkgs.networkmanagerapplet
             pkgs.networkmanager
