@@ -1,18 +1,18 @@
-CITRIX_CLASS="wfica"  
+CITRIX_CLASS="Wfica"  
 
 handle() {
     local event="$1"
     
-    # Événement activewindow>>CLASS,TITLE
-    if [[ "$event" == activewindow* ]]; then
+    if [[ "$event" == "activewindow>>"* ]]; then
         local class=$(echo "$event" | cut -d'>' -f3 | cut -d',' -f1)
         
+        notify-send "changed to $class"
+
         if [[ "$class" == *"$CITRIX_CLASS"* ]]; then
-            notify-send "Switching to Citrix layout"
+            notify-send "Switching Layout to BE"
             hyprctl switchxkblayout current 1
         else
-            # On quitte Citrix
-            notify-send "Restoring default layout"
+            notify-send "Switching Layout to FR"
             hyprctl switchxkblayout current 0
         fi
     fi
