@@ -10,10 +10,6 @@
             source = ../resources/hypr;
             recursive = true;
         };
-        ".config/waybar" = {
-            source = ../resources/waybar;
-            recursive = true;
-        };
     };
 
     home.packages = [
@@ -21,7 +17,10 @@
         pkgs.quickshell
         pkgs.hyprpolkitagent
         pkgs.dbus
+# file manager
         pkgs.nemo
+# used to transfer data between processes
+        pkgs.socat
     ];
     wayland.windowManager.hyprland = {
         enable = true;
@@ -37,22 +36,6 @@
     programs = {
         mpv.enable = true;
         hyprlock.enable = true;
-        walker = {
-            enable = true;
-            runAsService = true;
-
-            config = {
-                search.placeholder = "Example";
-                ui.fullscreen = true;
-                list = {
-                    height = 200;
-                };
-                websearch.prefix = "?";
-                switcher.prefix = "/";
-            };
-
-        };
-        waybar.enable = true;
     };
 
     services = {

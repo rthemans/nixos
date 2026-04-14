@@ -111,6 +111,8 @@
 
             initContent = ''
                 eval "$(zoxide init --cmd cd zsh)"
+                path+=("/home/rthemans/.mammouth/bin")
+                export PATH
                 '';
 
             sessionVariables = {
