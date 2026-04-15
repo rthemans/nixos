@@ -8,12 +8,10 @@ handle() {
         local class=$(echo "$event" | cut -d'>' -f3 | cut -d',' -f1)
         if [[ "$class" == *"$CITRIX_CLASS"* ]] && [[ "$mode" != "citrix" ]]; then
             mode="citrix"
-            notify-send "Switching Layout to BE"
             hyprctl dispatch submap CLEAN
             hyprctl switchxkblayout current 1
         elif [[ "$mode" != "default" ]]; then
             mode="default"
-            notify-send "Switching Layout to FR"
             hyprctl dispatch submap reset
             hyprctl switchxkblayout current 0
         fi
