@@ -1,7 +1,6 @@
 { config, inputs, pkgs, ...} : {
 
     imports = [
-        inputs.walker.homeManagerModules.default
         inputs.hyprland.homeManagerModules.default
     ];
 

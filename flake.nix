@@ -12,9 +12,6 @@
         url = "github:rthemans/dotfiles";
         flake = false;
     };
-    walker = {
-        url = "github:abenz1267/walker";
-    };
     hyprland = {
         url = "github:hyprwm/Hyprland";
     };
