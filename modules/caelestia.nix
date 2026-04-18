@@ -5,6 +5,7 @@
 
     programs.caelestia = {
             enable = true;
+            package = inputs.caelestia-shell.packages.${pkgs.system}.default;
             systemd = {
                 enable = false; # if you prefer starting from your compositor
                     target = "graphical-session.target";

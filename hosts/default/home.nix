@@ -1,4 +1,4 @@
-{ config, pkgs, unstable-pkgs, inputs, outputs, lib, ... }:
+{ config, pkgs, unstable-pkgs, inputs, outputs, lib, quickshell-caelestia,... }:
 
 {
 
@@ -14,13 +14,14 @@
             username = "rthemans";
         homeDirectory = "/home/rthemans";
         packages = [
+# needed for caelestia
+        quickshell-caelestia
+# others
             unstable-pkgs.citrix_workspace
             pkgs.gimp
             pkgs.networkmanagerapplet
             pkgs.networkmanager
-            pkgs.librewolf-unwrapped
             unstable-pkgs.qutebrowser
-            pkgs.sioyek
             pkgs.anki
             pkgs.mangohud
             pkgs.gamemode
