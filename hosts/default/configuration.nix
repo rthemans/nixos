@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, unstable-pkgs, pkgs, lib, inputs, outputs, quickshell-caelestia, ... }:
+{ config, unstable-pkgs, pkgs, lib, inputs, outputs, ... }:
 
 let
 sddm-astro = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };

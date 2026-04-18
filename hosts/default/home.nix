@@ -1,7 +1,6 @@
-{ config, pkgs, unstable-pkgs, inputs, outputs, lib, quickshell-caelestia,... }:
+{ config, pkgs, unstable-pkgs, inputs, outputs, lib, ... }:
 
 {
-
     imports = [
     (import inputs.modules {inherit config inputs pkgs;})
     ];
@@ -14,8 +13,7 @@
             username = "rthemans";
         homeDirectory = "/home/rthemans";
         packages = [
-# needed for caelestia
-        quickshell-caelestia
+        unstable-pkgs.quickshell
 # others
             unstable-pkgs.citrix_workspace
             pkgs.gimp

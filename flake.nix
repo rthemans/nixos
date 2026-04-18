@@ -27,9 +27,13 @@
   outputs = { self, nixpkgs, unstable, home-manager, caelestia-shell, ... }@inputs:
     let
       system = "x86_64-linux";
+      caelestiaOverlay = final: prev: {
+          quickshell = caelestia-shell.inputs.quickshell.packages.${system}.default;
+      };
       pkgs = import nixpkgs {
       	inherit system;
         config.allowUnfree = true;
+        overlays = [ caelestiaOverlay ]; 
       };
       unstable-pkgs = import unstable {
       	inherit system;
@@ -38,18 +42,17 @@
             "libsoup-2.74.3"
         ];
       };
-      caelestia-pkgs = caelestia-shell.inputs.nixpkgs.legacyPackages.${system};
-      quickshell-caelestia = caelestia-shell.inputs.quickshell.packages.${system}.default;
     in
     {
       nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
           specialArgs = {
-              inherit inputs unstable-pkgs quickshell-caelestia;
+              inherit inputs unstable-pkgs;
           };
           modules = [ 
             ./hosts/default/configuration.nix
             home-manager.nixosModules.default
+            { nixpkgs.overlays = [ caelestiaOverlay ]; }
           ];
         };
       server = nixpkgs.lib.nixosSystem {

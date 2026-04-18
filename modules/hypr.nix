@@ -13,7 +13,6 @@
 
     home.packages = [
         pkgs.hyprshot
-        pkgs.quickshell
         pkgs.hyprpolkitagent
         pkgs.dbus
 # file manager
