@@ -27,13 +27,9 @@
   outputs = { self, nixpkgs, unstable, home-manager, caelestia-shell, ... }@inputs:
     let
       system = "x86_64-linux";
-      caelestiaOverlay = final: prev: {
-          quickshell = caelestia-shell.inputs.quickshell.packages.${system}.default;
-      };
       pkgs = import nixpkgs {
       	inherit system;
         config.allowUnfree = true;
-        overlays = [ caelestiaOverlay ]; 
       };
       unstable-pkgs = import unstable {
       	inherit system;
@@ -52,7 +48,6 @@
           modules = [ 
             ./hosts/default/configuration.nix
             home-manager.nixosModules.default
-            { nixpkgs.overlays = [ caelestiaOverlay ]; }
           ];
         };
       server = nixpkgs.lib.nixosSystem {

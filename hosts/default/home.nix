@@ -13,7 +13,6 @@
             username = "rthemans";
         homeDirectory = "/home/rthemans";
         packages = [
-        unstable-pkgs.quickshell
 # others
             unstable-pkgs.citrix_workspace
             pkgs.gimp
