@@ -27,10 +27,8 @@
             unstable-pkgs.aseprite
 
 # Dev
-            pkgs.gradle
+            pkgs.opencode
             pkgs.bat
-            pkgs.nodejs
-            pkgs.maven
             pkgs.godot_4
             pkgs.docker
             pkgs.docker-compose
@@ -54,6 +52,7 @@
 # Games
 ## minecraft launcher
             pkgs.prismlauncher
+            pkgs.bottles
         ];
 
 # dotfiles management
