@@ -37,6 +37,8 @@
             pkgs.neovim
 
 # Utility
+            pkgs.mate.atril
+            pkgs.mate.caja
             pkgs.ripgrep
             pkgs.mpvpaper
             pkgs.wlroots_0_19
