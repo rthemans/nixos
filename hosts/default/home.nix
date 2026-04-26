@@ -37,6 +37,8 @@
             pkgs.neovim
 
 # Utility
+            pkgs.keepassxc
+            pkgs.davfs2
             pkgs.mate.atril
             pkgs.mate.caja
             pkgs.ripgrep
