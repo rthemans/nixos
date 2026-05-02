@@ -13,7 +13,7 @@
         flake = false;
     };
     hyprland = {
-        url = "github:hyprwm/Hyprland";
+        url = "github:hyprwm/Hyprland/v0.54.3-b";
     };
     modules = {
         url = "path:modules";
@@ -22,9 +22,13 @@
     caelestia-shell = {
         url = "github:caelestia-dots/shell";
     };
+    sops-nix = {
+        url = "github:Mic92/sops-nix";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, caelestia-shell, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, home-manager, caelestia-shell, sops-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -48,6 +52,7 @@
           modules = [ 
             ./hosts/default/configuration.nix
             home-manager.nixosModules.default
+            sops-nix.nixosModules.sops
           ];
         };
       server = nixpkgs.lib.nixosSystem {
