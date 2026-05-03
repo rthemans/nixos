@@ -1,0 +1,9 @@
+keys:
+  - &admin_rthemans age1skpzua5ynxfsmmdvzpxnw7n3cjj4a4swr3cfa4la9m6qlqqfjvxq7k48wh
+  - &host_default age1wvg29pvwq8e2qvhqhvpggwvtlp0spwhjv0nq48u7j7qwl0qu23ssc6hrz4
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_rthemans
+          - *host_default

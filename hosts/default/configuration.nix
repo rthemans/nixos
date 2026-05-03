@@ -166,7 +166,7 @@ users.users.rthemans = {
     hashedPassword = "$y$j9T$zQYPCbLq8..vy/I3DUCTT0$LD9Z4byg1OC/EG40TfdAu.tLEqiogZPG7iJw7wLwGXC";
     isNormalUser = true;
     description = "rthemans";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" "render" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" "render" "video" "davfs2" ];
     packages = with pkgs; [
         firefox
         libnotify
@@ -271,8 +271,35 @@ services.gvfs.enable = true;
 services.udisks2.enable = true;
 services.devmon.enable = true;
 
-# flatpak
 services.flatpak.enable = false;
+services.davfs2.enable = true;
 
 virtualisation.docker.enable = true;
+
+  sops = {
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+    secrets."webdav_airthems" = {
+        sopsFile = ../../secrets/webdav.yaml;
+        mode = "0600";
+        path = "/etc/davfs2/secrets";
+    };
+  };
+
+  systemd.tmpfiles.rules = [ "d /mnt/webdav 0755 root root - -" ];
+  systemd.mounts = [
+  {
+    enable = true;
+    description = "Webdav mount point";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+  
+    what = "https://webdav.airthems.org";
+    where = "/mnt/webdav";
+    wantedBy = [ "multi-user.target" ];
+    options = "uid=1000,gid=100,file_mode=0664,dir_mode=2775,_netdev";
+    type = "davfs";
+    mountConfig.TimeoutSec = 15;
+  }
+  ];
 }

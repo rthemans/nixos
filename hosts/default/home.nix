@@ -37,6 +37,7 @@
             pkgs.neovim
 
 # Utility
+            pkgs.sops
             pkgs.keepassxc
             pkgs.davfs2
             pkgs.mate.atril
