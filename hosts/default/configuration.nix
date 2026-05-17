@@ -56,6 +56,8 @@ in
         options = "--delete-older-than 15d";
     };
 
+    programs.nix-ld.enable = true;
+
 # Enable networking
     networking.networkmanager.enable = true;
 
