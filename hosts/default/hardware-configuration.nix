@@ -13,6 +13,7 @@
   boot.kernelModules = [ "kvm-amd" "nvidia-drm" ];
   boot.kernelParams = [
       "nvidia-drm.modeset=1"
+      "mem_sleep_default=deep"
   ];
   boot.extraModulePackages = [ ];
 
@@ -45,7 +46,11 @@
     };
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [
+  { device = "/dev/disk/by-label/swap"; }
+  ];
+
+  boot.resumeDevice = "/dev/disk/by-label/swap";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
