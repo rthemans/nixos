@@ -144,7 +144,12 @@ services.xserver = {
 };
 
 # Enable CUPS to print documents.
-services.printing.enable = true;
+services.printing = {
+    enable = true;
+    drivers = [
+        pkgs.hplipWithPlugin
+    ];
+};
 
 # Enable sound with pipewire.
 security.rtkit.enable = true;
@@ -213,6 +218,7 @@ environment.systemPackages = [
     sddm-astro
 
 # Other
+    pkgs.hplipWithPlugin
     pkgs.wget
     pkgs.curl
     pkgs.gvfs
@@ -221,7 +227,6 @@ environment.systemPackages = [
     pkgs.openssl
     pkgs.unetbootin
     pkgs.pulseaudio
-    pkgs.hplipWithPlugin
 
 # Machine Learning
     pkgs.cachix
@@ -275,6 +280,11 @@ services.devmon.enable = true;
 
 services.flatpak.enable = false;
 services.davfs2.enable = true;
+services.avahi = {
+  enable = true;
+  nssmdns4 = true;
+  openFirewall = true;
+};
 
 virtualisation.docker.enable = true;
 
