@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, unstable-pkgs, pkgs, lib, inputs, outputs, ... }:
+{ config, pkgs, lib, inputs, outputs, ... }:
 
 let
 sddm-astro = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
@@ -185,8 +185,9 @@ users.users.rthemans = {
 
 home-manager = {
 # also pass inputs to home-manager modules
-    extraSpecialArgs = { inherit unstable-pkgs inputs; };
+    extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "hmbackup";
+    useGlobalPkgs = true;
     users = {
         "rthemans" = import ./home.nix;
     };

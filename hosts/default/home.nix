@@ -1,4 +1,4 @@
-{ config, pkgs, unstable-pkgs, inputs, outputs, lib, ... }:
+{ config, pkgs, inputs, outputs, lib, ... }:
 
 {
     imports = [
@@ -14,17 +14,17 @@
         homeDirectory = "/home/rthemans";
         packages = [
 # others
-            unstable-pkgs.citrix_workspace
+            pkgs.citrix_workspace
             pkgs.gimp
             pkgs.networkmanagerapplet
             pkgs.networkmanager
-            unstable-pkgs.qutebrowser
+            pkgs.qutebrowser
             pkgs.anki
             pkgs.mangohud
             pkgs.gamemode
             pkgs.kdePackages.kdenlive
             pkgs.pastel
-            unstable-pkgs.aseprite
+            pkgs.aseprite
 
 # Dev
             pkgs.opencode
@@ -53,11 +53,10 @@
             pkgs.eid-mw
 
 # Chat
-            unstable-pkgs.discord
+            pkgs.discord
 # Games
 ## minecraft launcher
             pkgs.prismlauncher
-            pkgs.bottles
         ];
 
 # dotfiles management

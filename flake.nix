@@ -2,7 +2,6 @@
   description = "Nixos config flake";
 
   inputs = {
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -28,28 +27,28 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, caelestia-shell, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, caelestia-shell, sops-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
       	inherit system;
         config.allowUnfree = true;
       };
-      unstable-pkgs = import unstable {
-      	inherit system;
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-            "libsoup-2.74.3"
-        ];
-      };
     in
     {
       nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
           specialArgs = {
-              inherit inputs unstable-pkgs;
+              inherit inputs;
           };
           modules = [ 
+          {
+              nixpkgs.config.doCheckByDefault = false;
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.config.permittedInsecurePackages = [
+                  "libsoup-2.74.3"  # Requis par citrix-workspace
+              ];
+          }
             ./hosts/default/configuration.nix
             home-manager.nixosModules.default
             sops-nix.nixosModules.sops
