@@ -171,7 +171,7 @@ programs.zsh.enable = true;
 # Define a user account. Don't forget to set a password with ‘passwd’.
 users.mutableUsers = false;
 users.users.rthemans = {
-    hashedPassword = "$y$j9T$zQYPCbLq8..vy/I3DUCTT0$LD9Z4byg1OC/EG40TfdAu.tLEqiogZPG7iJw7wLwGXC";
+    hashedPasswordFile = config.sops.secrets."user_rthemans".path;
     isNormalUser = true;
     description = "rthemans";
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" "render" "video" "davfs2" ];
@@ -297,6 +297,9 @@ virtualisation.docker.enable = true;
         sopsFile = ../../secrets/webdav.yaml;
         mode = "0600";
         path = "/etc/davfs2/secrets";
+    };
+    secrets."user_rthemans" = {
+        sopsFile = ../../secrets/password.yaml;
     };
   };
 
