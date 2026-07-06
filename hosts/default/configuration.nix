@@ -171,7 +171,7 @@ programs.zsh.enable = true;
 # Define a user account. Don't forget to set a password with ‘passwd’.
 users.mutableUsers = false;
 users.users.rthemans = {
-    hashedPasswordFile = config.sops.secrets."user_rthemans".path;
+    hashedPassword = "$y$j9T$NFe0Ua/.9jtB1Vgd8651i.$FoeXiEfmJMYB5bUT5vQuhIRG8gjara7R6/TwSulHuI6";
     isNormalUser = true;
     description = "rthemans";
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" "docker" "uinput" "input" "render" "video" "davfs2" ];
