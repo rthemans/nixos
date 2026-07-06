@@ -37,11 +37,12 @@
             pkgs.neovim
 
 # Utility
+            pkgs.signal-desktop
             pkgs.sops
             pkgs.keepassxc
             pkgs.davfs2
-            pkgs.mate.atril
-            pkgs.mate.caja
+            pkgs.atril
+            pkgs.caja
             pkgs.ripgrep
             pkgs.mpvpaper
             pkgs.wlroots_0_19
@@ -74,7 +75,6 @@
 
 
     wayland.windowManager.hyprland.extraConfig = ''
-        # Moniteurs
         monitor = desc:AOC, 1920x1080@239.96, 0x0, 1
         monitor = desc:BNQ, 1920x1080@60.00, 1920x0, 1
         workspace = 1, monitor:desc:AOC

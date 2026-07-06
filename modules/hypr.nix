@@ -23,7 +23,7 @@
     wayland.windowManager.hyprland = {
         enable = true;
         xwayland.enable = true;
-        configType = "lua";
+        configType = "hyprlang";
         extraConfig = ''
             source = start.conf
             source = settings.conf

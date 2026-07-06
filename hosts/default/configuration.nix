@@ -30,7 +30,7 @@ in
         gfxmodeEfi = "1920x1080";
         gfxmodeBios = "1920x1080";
 
-        device = "/dev/sdb";
+        device = "/dev/sda";
 
         theme = pkgs.sleek-grub-theme.override { withBanner = "Bonjour Raphael!!"; withStyle = "bigSur"; };
     };
