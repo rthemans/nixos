@@ -6,16 +6,6 @@
 
 let
 sddm-astro = pkgs.sddm-astronaut.override { embeddedTheme = "black_hole"; };
-jdkEnv = pkgs.runCommand "jdk-env" {
-    buildInputs = with pkgs; [
-        pkgs.openjdk17
-        pkgs.openjdk21
-    ];
-} ''
-mkdir -p $out/jdks
-ln -s ${pkgs.openjdk17}/lib/openjdk   $out/jdks/openjdk17
-ln -s ${pkgs.openjdk21}/lib/openjdk   $out/jdks/openjdk21
-'';
 in
 {
     imports =
@@ -210,11 +200,7 @@ ln -sfT /run/current-system/sw/jdks /opt/java
 # $ nix search wget
 environment.systemPackages = [
 # variable
-    jdkEnv
-    pkgs.jdk21
-    pkgs.jdk17
-    pkgs.jdk11
-    pkgs.jdk8
+    pkgs.jdk25
 # theme
     pkgs.sleek-grub-theme
     sddm-astro
