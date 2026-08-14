@@ -34,7 +34,10 @@
             pkgs.docker-compose
             pkgs.git
             pkgs.httpie
+            pkgs.zig
             pkgs.neovim
+            pkgs.kdePackages.qtdeclarative
+            pkgs.nil
 
 # Utility
             pkgs.signal-desktop
@@ -167,6 +170,9 @@
             enable = true;
             enableZshIntegration = true;
             settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile ./resources/diamond.omp.json));
+        };
+        quickshell = {
+            enable = true;
         };
     };
 
