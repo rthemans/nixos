@@ -61,6 +61,8 @@
 # Games
 ## minecraft launcher
             pkgs.prismlauncher
+            pkgs.heroic
+            pkgs.gogdl
         ];
 
 # dotfiles management
