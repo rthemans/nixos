@@ -29,7 +29,7 @@
 # Dev
             pkgs.opencode
             pkgs.bat
-            pkgs.godot_4
+            pkgs.godot
             pkgs.docker
             pkgs.docker-compose
             pkgs.git
