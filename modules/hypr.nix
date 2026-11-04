@@ -1,9 +1,5 @@
 { config, inputs, pkgs, ...} : {
 
-    imports = [
-        inputs.hyprland.homeManagerModules.default
-    ];
-
     home.file = {
         ".config/hypr" = {
             source = ../resources/hypr;
@@ -17,18 +13,18 @@
         pkgs.dbus
 # file manager
         pkgs.nemo
-# used to transfer data between processes
-        pkgs.socat
     ];
     wayland.windowManager.hyprland = {
         enable = true;
         xwayland.enable = true;
-        configType = "hyprlang";
+        configType = "lua";
+# package.path est déjà préconfiguré par Hyprland vers <configDir>/?.lua
         extraConfig = ''
-            source = start.conf
-            source = settings.conf
-            source = binds.conf
-            source = rules.conf
+            require("settings")
+            require("start")
+            require("binds")
+            require("rules")
+            require("events")
         '';
     };
 

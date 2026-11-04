@@ -11,9 +11,6 @@
         url = "github:rthemans/dotfiles";
         flake = false;
     };
-    hyprland = {
-        url = "github:hyprwm/Hyprland/v0.54.3-b";
-    };
     modules = {
         url = "path:modules";
         flake = false;
@@ -22,8 +19,8 @@
         url = "github:caelestia-dots/shell";
     };
     sops-nix = {
-        url = "github:Mic92/sops-nix";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -32,7 +29,10 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
       	inherit system;
-        config.allowUnfree = true;
+        config = {
+            allowUnfree = true;
+            permittedInsecurePackages = [ "openclaw-2026.5.7" ];
+        };
       };
     in
     {
@@ -47,6 +47,7 @@
               nixpkgs.config.allowUnfree = true;
               nixpkgs.config.permittedInsecurePackages = [
                   "libsoup-2.74.3"  # Requis par citrix-workspace
+                  "openclaw-2026.5.7" 
               ];
           }
             ./hosts/default/configuration.nix

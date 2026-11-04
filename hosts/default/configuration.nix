@@ -149,6 +149,7 @@ services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
+    wireplumber.enable = true;
 };
 systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
 

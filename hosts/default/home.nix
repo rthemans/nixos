@@ -19,13 +19,13 @@
             pkgs.networkmanagerapplet
             pkgs.networkmanager
             pkgs.qutebrowser
-            pkgs.anki
             pkgs.mangohud
             pkgs.gamemode
             pkgs.kdePackages.kdenlive
             pkgs.pastel
             pkgs.aseprite
-
+            pkgs.openclaw
+            pkgs.gogcli
 # Dev
             pkgs.opencode
             pkgs.bat
@@ -80,12 +80,13 @@
 
 
     wayland.windowManager.hyprland.extraConfig = ''
-        monitor = desc:AOC, 1920x1080@239.96, 0x0, 1
-        monitor = desc:BNQ, 1920x1080@60.00, 1920x0, 1
-        workspace = 1, monitor:desc:AOC
-        exec-once = hyprctl dispatch workspace 1
-
-        exec-once = mpvpaper -n 20 -o "--geometry=1920x1060 --shuffle --no-audio" ALL /DataDrive/liveWallpaper/
+        hl.monitor({ output = "desc:AOC", mode = "1920x1080@239.96", position = "0x0", scale = 1 })
+        hl.monitor({ output = "desc:BNQ", mode = "1920x1080@60.00", position = "1920x0", scale = 1 })
+        hl.workspace_rule({ workspace = "1", monitor = "desc:AOC" })
+        hl.on("hyprland.start", function()
+            hl.dispatch(hl.dsp.focus({ workspace = "1" }))
+            hl.exec_cmd("mpvpaper -n 20 -o '--geometry=1920x1060 --shuffle --no-audio' ALL /DataDrive/liveWallpaper/current/")
+        end)
     '';
 
 # Let Home Manager install and manage itself.

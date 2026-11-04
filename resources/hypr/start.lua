@@ -1,0 +1,8 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd("caelestia-shell")
+    hl.exec_cmd("nm-applet --indicator")
+    hl.exec_cmd("hyprlock")
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("swaync")
+    hl.exec_cmd(os.getenv("HOME") .. "/.mammouth/bin/mammouth web")
+end)
