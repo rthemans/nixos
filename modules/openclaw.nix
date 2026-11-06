@@ -70,9 +70,9 @@ in
         "GOG_KEYRING_BACKEND=file"
       ];
 
-      # Fichier rendu par sops-nix templates (GOG_KEYRING_PASSWORD=...),
-      # owner=rthemans, 0400 — cf. hosts/default/configuration.nix
-      EnvironmentFile = "/run/secrets-rendered/gogcli_env";
+      # Fichier rendu par sops-nix templates — chemin par défaut du module
+      # sops-nix : /run/secrets/rendered/<nom> (owner=rthemans, 0400)
+      EnvironmentFile = "/run/secrets/rendered/gogcli_env";
 
       # Durcissement incrémental (full, pas strict : l'état reste ~/.openclaw
       # et les skills peuvent écrire dans $HOME). Resserrer après validation.
