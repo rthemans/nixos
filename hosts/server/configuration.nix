@@ -38,7 +38,7 @@
   time.timeZone = "Europe/Brussels";
 
   # Disable lid switch
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -64,9 +64,9 @@
     # Configure keymap in X11    
     xkb.layout = "fr";
     xkb.variant = "bepo";
-    
-    desktopManager.budgie.enable = true;
   };
+
+  services.desktopManager.budgie.enable = true;
 
   services.displayManager = {
     # Enable automatic login for the user.
@@ -85,7 +85,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   
   services.pipewire = {

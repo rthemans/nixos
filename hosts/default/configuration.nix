@@ -280,30 +280,9 @@ virtualisation.docker.enable = true;
   sops = {
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-    secrets."webdav_airthems" = {
-        sopsFile = ../../secrets/webdav.yaml;
-        mode = "0600";
-        path = "/etc/davfs2/secrets";
-    };
     secrets."user_rthemans" = {
         sopsFile = ../../secrets/password.yaml;
     };
   };
 
-  systemd.tmpfiles.rules = [ "d /mnt/webdav 0755 root root - -" ];
-  systemd.mounts = [
-  {
-    enable = true;
-    description = "Webdav mount point";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-  
-    what = "https://webdav.airthems.org";
-    where = "/mnt/webdav";
-    wantedBy = [ "multi-user.target" ];
-    options = "uid=1000,gid=100,file_mode=0664,dir_mode=2775,_netdev";
-    type = "davfs";
-    mountConfig.TimeoutSec = 15;
-  }
-  ];
 }

@@ -3,5 +3,6 @@
     imports = [
         (import ./hypr.nix {inherit config inputs pkgs;})
         (import ./caelestia.nix {inherit config inputs pkgs;})
+        (import ./openclaw.nix {inherit config inputs pkgs;})
     ];
 }

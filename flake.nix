@@ -34,6 +34,9 @@
             permittedInsecurePackages = [ "openclaw-2026.5.7" ];
         };
       };
+    hyprTests = pkgs.writeShellScriptBin "hypr-tests" ''
+        exec ${pkgs.lua}/bin/lua ${self}/tests/run.lua ${self}/resources/hypr
+      '';
     in
     {
       nixosConfigurations = {
@@ -62,6 +65,17 @@
             inputs.home-manager.nixosModules.default
           ];
         };
+      };
+
+      checks.${system}.hyprland-lua-tests = pkgs.runCommand "hyprland-lua-tests" { } ''
+        ${hyprTests}/bin/hypr-tests
+        touch $out
+      '';
+
+      apps.${system}.hypr-tests = {
+        type = "app";
+        program = "${hyprTests}/bin/hypr-tests";
+        meta.description = "Tests hors-ligne de la configuration Lua Hyprland";
       };
     };
 }

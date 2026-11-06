@@ -185,6 +185,8 @@
 
     gtk = {
         enable = true;
+# adopte le nouveau défaut de home-manager 26.05 (comportement identique ici)
+        gtk4.theme = null;
         iconTheme = {
             name = "WhiteSur";
             package = pkgs.whitesur-icon-theme;

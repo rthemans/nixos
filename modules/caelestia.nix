@@ -32,9 +32,15 @@
                         enabled = false;
                     };
                 };
-                visualiser = {
-                    enable = false;
+            visualiser = {
+                enable = false;
+            };
+            utilities = {
+                toasts = {
+# affiche les toasts même en fenêtre fullscreen (défaut: "off" les masque tous)
+                    fullscreen = "all";
                 };
+            };
                 bar = {
                     persistent = false;
                     showOnHover = true;

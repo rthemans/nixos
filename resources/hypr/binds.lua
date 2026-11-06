@@ -1,3 +1,5 @@
+local extensions = require("extensions")
+
 -- media keys
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
@@ -54,92 +56,73 @@ hl.bind("code:95",            hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind("SHIFT + code:95",    hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind("SUPER + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 
-hl.define_submap("WINDOWS", function()
-    -- navigating windows
-    hl.bind("h",         hl.dsp.focus({ direction = "l" }))
-    hl.bind("l",         hl.dsp.focus({ direction = "r" }))
-    hl.bind("k",         hl.dsp.focus({ direction = "u" }))
-    hl.bind("j",         hl.dsp.focus({ direction = "d" }))
-    hl.bind("n",         hl.dsp.window.cycle_next({ next = true }))
-    hl.bind("SHIFT + n", hl.dsp.window.cycle_next({ next = false }))
+extensions.submap("WINDOWS", {
+    -- navigating windows (binde -> repeating)
+    { keys = "h",         fn = hl.dsp.focus({ direction = "l" }),          opts = { repeating = true }, desc = "focus à gauche" },
+    { keys = "l",         fn = hl.dsp.focus({ direction = "r" }),          opts = { repeating = true }, desc = "focus à droite" },
+    { keys = "k",         fn = hl.dsp.focus({ direction = "u" }),          opts = { repeating = true }, desc = "focus en haut" },
+    { keys = "j",         fn = hl.dsp.focus({ direction = "d" }),          opts = { repeating = true }, desc = "focus en bas" },
+    { keys = "n",         fn = hl.dsp.window.cycle_next({ next = true }),  opts = { repeating = true }, desc = "fenêtre suivante" },
+    { keys = "SHIFT + n", fn = hl.dsp.window.cycle_next({ next = false }), opts = { repeating = true }, desc = "fenêtre précédente" },
 
     -- moving windows
-    hl.bind("SHIFT + h", hl.dsp.window.move({ direction = "l" }))
-    hl.bind("SHIFT + l", hl.dsp.window.move({ direction = "r" }))
-    hl.bind("SHIFT + k", hl.dsp.window.move({ direction = "u" }))
-    hl.bind("SHIFT + j", hl.dsp.window.move({ direction = "d" }))
+    { keys = "SHIFT + h", fn = hl.dsp.window.move({ direction = "l" }), desc = "déplacer à gauche" },
+    { keys = "SHIFT + l", fn = hl.dsp.window.move({ direction = "r" }), desc = "déplacer à droite" },
+    { keys = "SHIFT + k", fn = hl.dsp.window.move({ direction = "u" }), desc = "déplacer en haut" },
+    { keys = "SHIFT + j", fn = hl.dsp.window.move({ direction = "d" }), desc = "déplacer en bas" },
 
     -- grouping windows
-    hl.bind("SHIFT + G", hl.dsp.group.toggle())
-    hl.bind("N",         hl.dsp.group.next())
-    hl.bind("SHIFT + N", hl.dsp.group.prev())
-    hl.bind("ALT + L",        hl.dsp.window.move({ into_group = "r" }))
-    hl.bind("ALT + SHIFT + L",  hl.dsp.window.move({ into_or_create_group = "r" }))
-    hl.bind("ALT + H",        hl.dsp.window.move({ into_group = "l" }))
-    hl.bind("ALT + SHIFT + H",  hl.dsp.window.move({ into_or_create_group = "l" }))
-    hl.bind("ALT + K",        hl.dsp.window.move({ into_group = "u" }))
-    hl.bind("ALT + SHIFT + K",  hl.dsp.window.move({ into_or_create_group = "u" }))
-    hl.bind("ALT + J",        hl.dsp.window.move({ into_group = "d" }))
-    hl.bind("ALT + SHIFT + J",  hl.dsp.window.move({ into_or_create_group = "d" }))
-    hl.bind("X",         hl.dsp.window.move({ out_of_group = true }))
+    { keys = "SHIFT + G", fn = hl.dsp.group.toggle(), desc = "grouper/dégrouper" },
+    { keys = "N",         fn = hl.dsp.group.next(),   desc = "suivant dans le groupe" },
+    { keys = "SHIFT + N", fn = hl.dsp.group.prev(),   desc = "précédent dans le groupe" },
+    { keys = "ALT + L",         fn = hl.dsp.window.move({ into_group = "r" }),          desc = "insérer dans le groupe à droite" },
+    { keys = "ALT + SHIFT + L", fn = hl.dsp.window.move({ into_or_create_group = "r" }), desc = "déplacer ou grouper à droite" },
+    { keys = "ALT + H",         fn = hl.dsp.window.move({ into_group = "l" }),          desc = "insérer dans le groupe à gauche" },
+    { keys = "ALT + SHIFT + H", fn = hl.dsp.window.move({ into_or_create_group = "l" }), desc = "déplacer ou grouper à gauche" },
+    { keys = "ALT + K",         fn = hl.dsp.window.move({ into_group = "u" }),          desc = "insérer dans le groupe en haut" },
+    { keys = "ALT + SHIFT + K", fn = hl.dsp.window.move({ into_or_create_group = "u" }), desc = "déplacer ou grouper en haut" },
+    { keys = "ALT + J",         fn = hl.dsp.window.move({ into_group = "d" }),          desc = "insérer dans le groupe en bas" },
+    { keys = "ALT + SHIFT + J", fn = hl.dsp.window.move({ into_or_create_group = "d" }), desc = "déplacer ou grouper en bas" },
+    { keys = "X",         fn = hl.dsp.window.move({ out_of_group = true }), desc = "sortir du groupe" },
 
     -- window actions
-    hl.bind("Q",             hl.dsp.window.close())
-    hl.bind("F",             hl.dsp.window.fullscreen({ mode = "fullscreen" }))
-    hl.bind("SHIFT + F",     hl.dsp.window.fullscreen({ mode = "maximized" }))
-    hl.bind("SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+    { keys = "Q",             fn = hl.dsp.window.close(),                             desc = "fermer la fenêtre" },
+    { keys = "F",             fn = hl.dsp.window.fullscreen({ mode = "fullscreen" }), desc = "plein écran" },
+    { keys = "SHIFT + F",     fn = hl.dsp.window.fullscreen({ mode = "maximized" }),  desc = "maximiser" },
+    { keys = "SHIFT + SPACE", fn = hl.dsp.window.float({ action = "toggle" }),        desc = "flotter/déflotter" },
+})
 
-    hl.bind("ESCAPE",    hl.dsp.submap("reset"))
-    hl.bind("catchall",  function() hl.exec_cmd('notify-send "Press ESC to go in default"') end)
-end)
+extensions.submap("GROUPS", {
+    { keys = "G",         fn = hl.dsp.group.toggle(),                              desc = "grouper/dégrouper" },
+    { keys = "N",         fn = hl.dsp.group.next(),                                desc = "suivant dans le groupe" },
+    { keys = "SHIFT + N", fn = hl.dsp.group.prev(),                                desc = "précédent dans le groupe" },
+    { keys = "L",         fn = hl.dsp.window.move({ into_group = "r" }),           desc = "insérer dans le groupe à droite" },
+    { keys = "SHIFT + L", fn = hl.dsp.window.move({ into_or_create_group = "r" }), desc = "déplacer ou grouper à droite" },
+    { keys = "H",         fn = hl.dsp.window.move({ into_group = "l" }),           desc = "insérer dans le groupe à gauche" },
+    { keys = "SHIFT + H", fn = hl.dsp.window.move({ into_or_create_group = "l" }), desc = "déplacer ou grouper à gauche" },
+    { keys = "X",         fn = hl.dsp.window.move({ out_of_group = true }),        desc = "sortir du groupe" },
+})
 
-hl.define_submap("GROUPS", function()
-    hl.bind("G",         hl.dsp.group.toggle())
-    hl.bind("N",         hl.dsp.group.next())
-    hl.bind("SHIFT + N", hl.dsp.group.prev())
-    hl.bind("L",         hl.dsp.window.move({ into_group = "r" }))
-    hl.bind("SHIFT + L", hl.dsp.window.move({ into_or_create_group = "r" }))
-    hl.bind("H",         hl.dsp.window.move({ into_group = "l" }))
-    hl.bind("SHIFT + H", hl.dsp.window.move({ into_or_create_group = "l" }))
-    hl.bind("X",         hl.dsp.window.move({ out_of_group = true }))
+extensions.submap("SOUND", {
+    { keys = "K", fn = hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),  opts = { locked = true, repeating = true }, desc = "volume +5%" },
+    { keys = "J", fn = hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),  opts = { locked = true, repeating = true }, desc = "volume -5%" },
+    { keys = "M", fn = hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), opts = { locked = true },                   desc = "couper le son" },
+})
 
-    hl.bind("ESCAPE",    hl.dsp.submap("reset"))
-    hl.bind("catchall",  function() hl.exec_cmd('notify-send "Presc ESC to go in default"') end)
-end)
+extensions.submap("POWER", {
+    { keys = "R", fn = function() extensions.powerAction("reboot")    hl.dispatch(hl.dsp.submap("reset")) end, desc = "redémarrer" },
+    { keys = "P", fn = function() extensions.powerAction("poweroff")  hl.dispatch(hl.dsp.submap("reset")) end, desc = "éteindre" },
+    { keys = "H", fn = function() extensions.powerAction("hibernate") hl.dispatch(hl.dsp.submap("reset")) end, desc = "hiberner" },
+    { keys = "S", fn = function() extensions.powerAction("suspend")   hl.dispatch(hl.dsp.submap("reset")) end, desc = "suspendre" },
+    { keys = "O", fn = function() extensions.powerAction("poweroff")  hl.dispatch(hl.dsp.submap("reset")) end, desc = "éteindre" },
+})
 
-hl.define_submap("SOUND", function()
-    hl.bind("K", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-    hl.bind("J", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
-    hl.bind("M", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-
-    hl.bind("ESCAPE",    hl.dsp.submap("reset"))
-    hl.bind("catchall",  function() hl.exec_cmd('notify-send "Press ESC to go in default"') end)
-end)
-
-hl.define_submap("POWER", function()
-    local action = function(name)
-        return function()
-            hl.exec_cmd(os.getenv("HOME") .. "/.config/hypr/Scripts/power-action.sh " .. name)
-            hl.dispatch(hl.dsp.submap("reset"))
-        end
-    end
-
-    hl.bind("R", action("reboot"))
-    hl.bind("P", action("poweroff"))
-    hl.bind("H", action("hibernate"))
-    hl.bind("S", action("suspend"))
-    hl.bind("O", action("poweroff"))
-
-    hl.bind("ESCAPE",    hl.dsp.submap("reset"))
-    hl.bind("catchall",  function() hl.exec_cmd('notify-send "Press ESC to go in default"') end)
-end)
-
-hl.define_submap("CLEAN", function()
-    hl.bind("SUPER + code:10", hl.dsp.focus({ workspace = "1" }))
-    hl.bind("SUPER + code:11", hl.dsp.focus({ workspace = "2" }))
-    hl.bind("SUPER + code:12", hl.dsp.focus({ workspace = "3" }))
-    hl.bind("SUPER + code:13", hl.dsp.focus({ workspace = "4" }))
-    hl.bind("SUPER + code:14", hl.dsp.focus({ workspace = "5" }))
-
-    hl.bind("SUPER + F10", hl.dsp.submap("reset"))
-end)
+-- CLEAN reste passant (session Citrix) : pas de ESCAE/?/catchall
+extensions.submap("CLEAN", {
+    { keys = "SUPER + code:10", fn = hl.dsp.focus({ workspace = "1" }), desc = "aller au workspace 1" },
+    { keys = "SUPER + code:11", fn = hl.dsp.focus({ workspace = "2" }), desc = "aller au workspace 2" },
+    { keys = "SUPER + code:12", fn = hl.dsp.focus({ workspace = "3" }), desc = "aller au workspace 3" },
+    { keys = "SUPER + code:13", fn = hl.dsp.focus({ workspace = "4" }), desc = "aller au workspace 4" },
+    { keys = "SUPER + code:14", fn = hl.dsp.focus({ workspace = "5" }), desc = "aller au workspace 5" },
+    { keys = "SUPER + F10",     fn = hl.dsp.submap("reset"),            desc = "quitter le submap CLEAN" },
+}, { catchall = false })
