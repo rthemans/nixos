@@ -290,10 +290,20 @@ virtualisation.docker.enable = true;
         owner = "rthemans";
         mode = "0400";
     };
-    # Rendu au format EnvironmentFile systemd (GOG_KEYRING_PASSWORD=...)
-    # pour l'unité utilisateur openclaw-gateway.
-    templates."gogcli_env" = {
-        content = "GOG_KEYRING_PASSWORD=${config.sops.placeholder."gogcli_keyring_env"}";
+    # Header Authorization: Basic (user + app password Nextcloud) pour le serveur
+    # MCP Nextcloud — référencé par ${NEXTCLOUD_MCP_AUTHORIZATION} dans openclaw.json.
+    secrets."openclaw_nextcloud_basic" = {
+        sopsFile = ../../secrets/openclaw.yaml;
+        owner = "rthemans";
+        mode = "0400";
+    };
+    # Rendu au format EnvironmentFile systemd pour l'unité openclaw-gateway :
+    # GOG_KEYRING_PASSWORD=... et NEXTCLOUD_MCP_AUTHORIZATION=...
+    templates."openclaw_env" = {
+        content = ''
+          GOG_KEYRING_PASSWORD=${config.sops.placeholder."gogcli_keyring_env"}
+          NEXTCLOUD_MCP_AUTHORIZATION=${config.sops.placeholder."openclaw_nextcloud_basic"}
+        '';
         owner = "rthemans";
         mode = "0400";
     };

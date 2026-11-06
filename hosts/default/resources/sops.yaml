@@ -1,0 +1,7 @@
+keys:
+  - &rthemans age1skpzua5ynxfsmmdvzpxnw7n3cjj4a4swr3cfa4la9m6qlqqfjvxq7k48wh
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      age:
+      - *rthemans
