@@ -283,6 +283,20 @@ virtualisation.docker.enable = true;
     secrets."user_rthemans" = {
         sopsFile = ../../secrets/password.yaml;
     };
+    # OpenClaw : secrets du gateway (fichier global, préfixe "openclaw/")
+    # gogcli_keyring_env = mot de passe brut du keyring fichier de gog (gogcli)
+    secrets."gogcli_keyring_env" = {
+        sopsFile = ../../secrets/openclaw.yaml;
+        owner = "rthemans";
+        mode = "0400";
+    };
+    # Rendu au format EnvironmentFile systemd (GOG_KEYRING_PASSWORD=...)
+    # pour l'unité utilisateur openclaw-gateway.
+    templates."gogcli_env" = {
+        content = "GOG_KEYRING_PASSWORD=${config.sops.placeholder."gogcli_keyring_env"}";
+        owner = "rthemans";
+        mode = "0400";
+    };
   };
 
 }

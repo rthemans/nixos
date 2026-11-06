@@ -28,6 +28,8 @@ let
       pkgs.findutils
       pkgs.gnugrep
       pkgs.gawk
+      # Outils utilisés par les skills/agents du gateway (inventaire explicite)
+      pkgs.gogcli # binaire "gog" (config: ~/.config/gogcli)
     ])
     ++ [ "/run/current-system/sw/bin" ]
   );
@@ -63,7 +65,14 @@ in
         "OPENCLAW_SERVICE_MARKER=openclaw"
         "OPENCLAW_SERVICE_KIND=gateway"
         "OPENCLAW_SERVICE_VERSION=${openclaw.version}"
+        # Backend keyring fichier pour gog (gogcli) : le mot de passe vient
+        # du secret sops via EnvironmentFile (GOG_KEYRING_PASSWORD).
+        "GOG_KEYRING_BACKEND=file"
       ];
+
+      # Fichier rendu par sops-nix templates (GOG_KEYRING_PASSWORD=...),
+      # owner=rthemans, 0400 — cf. hosts/default/configuration.nix
+      EnvironmentFile = "/run/secrets-rendered/gogcli_env";
 
       # Durcissement incrémental (full, pas strict : l'état reste ~/.openclaw
       # et les skills peuvent écrire dans $HOME). Resserrer après validation.
