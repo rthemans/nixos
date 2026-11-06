@@ -55,6 +55,8 @@
             pkgs.pavucontrol
             pkgs.unzip
             pkgs.eid-mw
+            pkgs.python314
+            pkgs.python314Packages.weasyprint
 
 # Chat
             pkgs.discord
